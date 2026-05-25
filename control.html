@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Elden Ring Overlay Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="control-body">
+  <div class="control-layout">
+    <div class="card">
+      <h1>Elden Ring Challenge Control</h1>
+      <p>OBS Browser Source URL:</p>
+      <code>http://localhost:3210/overlay.html</code>
+
+      <div class="field-group">
+        <label class="field-label" for="languageSelect" data-i18n="language">Language</label>
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="tr">Türkçe</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="challengeTitleInput" data-i18n="challengeTitle">Challenge Title</label>
+        <input id="challengeTitleInput" type="text" maxlength="80" placeholder="Challenge name" data-i18n-placeholder="challengeTitlePlaceholder">
+      </div>
+
+      <div class="field-group">
+        <span class="field-label" data-i18n="saveFile">Save File</span>
+        <div class="save-file-row">
+          <button id="saveFileButton" type="button" data-i18n="chooseSaveFile">Choose Save File</button>
+          <input id="saveFileInput" type="file" accept=".sl2,.co2" hidden>
+        </div>
+        <div id="saveFileUploadStatus" class="field-hint"></div>
+      </div>
+
+      <div class="switch-group">
+        <span class="field-label" data-i18n="bossList">Boss List</span>
+        <label class="switch-row" for="includeDlcSwitch">
+          <input id="includeDlcSwitch" type="checkbox">
+          <span class="switch-track" aria-hidden="true"></span>
+          <span data-i18n="includeDlc">Include DLC</span>
+        </label>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="bossListModeSelect" data-i18n="listType">List Type</label>
+        <select id="bossListModeSelect">
+          <option value="allBosses" data-i18n="allBosses">All Bosses</option>
+          <option value="allRemembrances" data-i18n="allRemembrances">All Remembrances</option>
+          <option value="customBosses" data-i18n="customBosses">Custom Bosses</option>
+          <option value="platinumChecklist" data-i18n="platinumTrophy">Platinum Trophy</option>
+        </select>
+      </div>
+
+      <div id="customBossControls" class="custom-boss-controls"></div>
+
+      <div class="button-row">
+        <button class="primary" onclick="send({type:'start'})">Start</button>
+        <button onclick="send({type:'pause'})">Pause</button>
+        <button onclick="send({type:'resetTimer'})">Reset Timer</button>
+        <button class="primary" onclick="send({type:'nextSplit'})">Next Split</button>
+        <button onclick="send({type:'incTotalPB'})">PB +</button>
+        <button onclick="send({type:'decTotalPB'})">PB -</button>
+        <button class="danger" onclick="send({type:'resetRun'})">Reset Run</button>
+      </div>
+
+      <h2 data-i18n="preview">Preview</h2>
+      <iframe src="overlay.html" class="preview-frame"></iframe>
+
+      <h2 data-i18n="saveWatcher">Save Watcher</h2>
+      <div id="saveStatus" class="save-card"></div>
+    </div>
+
+    <div id="layoutResizeHandle" class="layout-resize-handle" role="separator" aria-orientation="vertical" aria-label="Resize left panel"></div>
+
+    <div class="card">
+      <h2 id="status">Bosses</h2>
+      <table class="control-table">
+        <thead id="progressTableHead">
+          <tr>
+            <th>#</th>
+            <th>Boss</th>
+            <th>Region</th>
+            <th>Place</th>
+            <th>Flag</th>
+            <th data-i18n="status">Status</th>
+          </tr>
+        </thead>
+        <tbody id="bossTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="control.js"></script>
+</body>
+</html>

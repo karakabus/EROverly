@@ -1,0 +1,5629 @@
+{
+  "0:0": {
+    "displayFlagId": 18000850,
+    "displayWhen": true,
+    "tgaName": "Soldier of Godrick",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 18000850,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:1": {
+    "displayFlagId": 1042360800,
+    "displayWhen": true,
+    "tgaName": "Tree Sentinel",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 1042360800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530100,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:2": {
+    "displayFlagId": 31150800,
+    "displayWhen": true,
+    "tgaName": "Demi-Human Chiefs",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 31150800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31150815,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9234,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520340,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 60140,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 61234,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1234,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:3": {
+    "displayFlagId": 30020800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Burial Watchdog",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 30020800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9202,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520020,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61202,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1202,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:4": {
+    "displayFlagId": 31030800,
+    "displayWhen": true,
+    "tgaName": "Beastman of Farum Azula",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 31030800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9233,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520330,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61233,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1233,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:5": {
+    "displayFlagId": 32010800,
+    "displayWhen": true,
+    "tgaName": "Stonedigger Troll",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 32010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32010801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32018590,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9261,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520610,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61261,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1261,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:6": {
+    "displayFlagId": 1044360800,
+    "displayWhen": true,
+    "tgaName": "Mad Pumpkin Head",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 1044360800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76120,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "0:7": {
+    "displayFlagId": 1044350800,
+    "displayWhen": true,
+    "tgaName": "Bloodhound Knight Darriwil",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 1044350800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530130,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:8": {
+    "displayFlagId": 31000800,
+    "displayWhen": true,
+    "tgaName": "Patches",
+    "tgaSubcategory": "TEST",
+    "tgaFlags": [
+      {
+        "id": 31000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31000811,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31008521,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31007010,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31009210,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31008820,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9232,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520320,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61232,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1232,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 3680,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 3681,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3700,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 3703,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "0:9": {
+    "displayFlagId": 30040800,
+    "displayWhen": true,
+    "tgaName": "Grave Warden Duelist",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 30040800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9204,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520040,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61204,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1204,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:10": {
+    "displayFlagId": 31170800,
+    "displayWhen": true,
+    "tgaName": "Guardian Golem",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 31170800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9235,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520350,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61235,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1235,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:11": {
+    "displayFlagId": 30110800,
+    "displayWhen": true,
+    "tgaName": "Black Knife Assassin",
+    "tgaSubcategory": "Stormhill",
+    "tgaFlags": [
+      {
+        "id": 30110800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9203,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520030,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61203,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1203,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:12": {
+    "displayFlagId": 18000800,
+    "displayWhen": true,
+    "tgaName": "Ulcerated Tree Spirit",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 18000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9128,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510280,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61128,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1128,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:13": {
+    "displayFlagId": 1043360800,
+    "displayWhen": true,
+    "tgaName": "Flying Dragon Agheel",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 1043360800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1043360340,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530110,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:14": {
+    "displayFlagId": 1045390800,
+    "displayWhen": true,
+    "tgaName": "Tibia Mariner",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 1045390800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530170,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:15": {
+    "displayFlagId": 1042370800,
+    "displayWhen": true,
+    "tgaName": "Crucible Knight",
+    "tgaSubcategory": "Stormhill",
+    "tgaFlags": [
+      {
+        "id": 1042370800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530120,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:16": {
+    "displayFlagId": 1043370800,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Limgrave",
+    "tgaFlags": [
+      {
+        "id": 1043370800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1043377400,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65813,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "0:17": {
+    "displayFlagId": 1042380800,
+    "displayWhen": true,
+    "tgaName": "Deathbird",
+    "tgaSubcategory": "Stormhill",
+    "tgaFlags": [
+      {
+        "id": 1042380800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1042387400,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "0:18": {
+    "displayFlagId": 1042380850,
+    "displayWhen": true,
+    "tgaName": "Bell Bearing Hunter",
+    "tgaSubcategory": "Stormhill",
+    "tgaFlags": [
+      {
+        "id": 1042380850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1042387410,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:0": {
+    "displayFlagId": 31010800,
+    "displayWhen": true,
+    "tgaName": "Runebear",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 31010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31010801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9231,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520310,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61231,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1231,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:1": {
+    "displayFlagId": 32000800,
+    "displayWhen": true,
+    "tgaName": "Scaly Misbegotten",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 32000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32000590,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9260,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520600,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61260,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1260,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:2": {
+    "displayFlagId": 30010800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Burial Watchdog",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 30010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9201,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520010,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61201,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1201,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:3": {
+    "displayFlagId": 30000800,
+    "displayWhen": true,
+    "tgaName": "Cemetery Shade",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 30000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9200,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520000,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61200,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1200,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:4": {
+    "displayFlagId": 31020800,
+    "displayWhen": true,
+    "tgaName": "Miranda the Blighted Bloom",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 31020800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9230,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520300,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61230,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1230,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:5": {
+    "displayFlagId": 1043330800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Avatar",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 1043330800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65080,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65090,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "1:6": {
+    "displayFlagId": 1042330800,
+    "displayWhen": true,
+    "tgaName": "Ancient Hero of Zamor",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 1042330800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1042337100,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:7": {
+    "displayFlagId": 1044320850,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 1044320850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1044327410,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65888,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "1:8": {
+    "displayFlagId": 1044320800,
+    "displayWhen": true,
+    "tgaName": "Deathbird",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 1044320800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1044327400,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "1:9": {
+    "displayFlagId": 1043300800,
+    "displayWhen": true,
+    "tgaName": "Leonine Misbegotten",
+    "tgaSubcategory": "Weeping Peninsula",
+    "tgaFlags": [
+      {
+        "id": 1043300800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9180,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61180,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 76161,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 1180,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "2:0": {
+    "displayFlagId": 10000850,
+    "displayWhen": true,
+    "tgaName": "Margit, the Fell Omen",
+    "tgaSubcategory": "Stormhill",
+    "tgaFlags": [
+      {
+        "id": 10000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 10000851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9100,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61100,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 60510,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71001,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 1100,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "2:1": {
+    "displayFlagId": 10000800,
+    "displayWhen": true,
+    "tgaName": "Godrick the Grafted",
+    "tgaSubcategory": "Stormveil Castle",
+    "tgaFlags": [
+      {
+        "id": 10000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 10000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9101,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510010,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61101,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 3269,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 10008540,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 71000,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 1101,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:0": {
+    "displayFlagId": 31040800,
+    "displayWhen": true,
+    "tgaName": "Cleanrot Knight",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 31040800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9236,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520360,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61236,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1236,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:1": {
+    "displayFlagId": 31050800,
+    "displayWhen": true,
+    "tgaName": "Bloodhound Knight",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 31050800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31050801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9237,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520370,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61237,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1237,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:2": {
+    "displayFlagId": 30060800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Burial Watchdog",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 30060800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9207,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520070,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61207,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1207,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:3": {
+    "displayFlagId": 31060800,
+    "displayWhen": true,
+    "tgaName": "Crystalian Duo",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 31060800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9238,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520380,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61238,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1238,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:4": {
+    "displayFlagId": 32020800,
+    "displayWhen": true,
+    "tgaName": "Crystalian",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 32020800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9262,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520620,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61262,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1262,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:5": {
+    "displayFlagId": 30050800,
+    "displayWhen": true,
+    "tgaName": "Cemetery Shade",
+    "tgaSubcategory": "Bellum Highway",
+    "tgaFlags": [
+      {
+        "id": 30050800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9205,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520050,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61205,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1205,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:6": {
+    "displayFlagId": 30050850,
+    "displayWhen": true,
+    "tgaName": "Black Knife Assassin",
+    "tgaSubcategory": "Bellum Highway",
+    "tgaFlags": [
+      {
+        "id": 30050850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9221,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520210,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61221,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1221,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:7": {
+    "displayFlagId": 30030800,
+    "displayWhen": true,
+    "tgaName": "Spirit-Caller Snail",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 30030800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9206,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520060,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61206,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1206,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:8": {
+    "displayFlagId": 10010800,
+    "displayWhen": true,
+    "tgaName": "Grafted Scion",
+    "tgaSubcategory": "Stormveil Castle",
+    "tgaFlags": [
+      {
+        "id": 10010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 10010801,
+        "eval": "function("
+      },
+      {
+        "id": 101,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9103,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510030,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61103,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1103,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:9": {
+    "displayFlagId": 1034450800,
+    "displayWhen": true,
+    "tgaName": "Glintstone Dragon Smarag",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1034450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530210,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:10": {
+    "displayFlagId": 1035420800,
+    "displayWhen": true,
+    "tgaName": "Omenkiller",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1035420800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530225,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:11": {
+    "displayFlagId": 1034480800,
+    "displayWhen": true,
+    "tgaName": "Royal Revenant",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1034480800,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:12": {
+    "displayFlagId": 1039440800,
+    "displayWhen": true,
+    "tgaName": "Tibia Mariner",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1039440800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530240,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:13": {
+    "displayFlagId": 1033430800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Avatar (SW)",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1033430800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65040,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65160,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "3:14": {
+    "displayFlagId": 1038480800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Avatar (NE)",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1038480800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65290,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65300,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65310,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "3:15": {
+    "displayFlagId": 1038410800,
+    "displayWhen": true,
+    "tgaName": "Adan, Thief of Fire",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1038410800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530245,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:16": {
+    "displayFlagId": 1033450800,
+    "displayWhen": true,
+    "tgaName": "Bols, Carian Knight",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1033450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530250,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:17": {
+    "displayFlagId": 1036500800,
+    "displayWhen": true,
+    "tgaName": "Onyx Lord",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1036500800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530255,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:18": {
+    "displayFlagId": 1039430800,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1039430800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1039437400,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65882,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "3:19": {
+    "displayFlagId": 1036480800,
+    "displayWhen": true,
+    "fallbackFlagIds": [
+      14000800
+    ],
+    "fallbackWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Bellum Highway",
+    "sourceNote": "Compatibility fallback for Hexinton CT line 108340, which uses 0x158146:7 for Liurnia North.",
+    "tgaFlags": [
+      {
+        "id": 1036480800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1036487400,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65835,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "3:20": {
+    "displayFlagId": 1037420800,
+    "displayWhen": true,
+    "tgaName": "Deathbird",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1037420800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1037427400,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:21": {
+    "displayFlagId": 1036450800,
+    "displayWhen": true,
+    "tgaName": "Death Rite Bird",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1036450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1036457400,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:22": {
+    "displayFlagId": 1037460800,
+    "displayWhen": true,
+    "tgaName": "Bell Bearing Hunter",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1037460800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1037467400,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:23": {
+    "displayFlagId": 1035500800,
+    "displayWhen": true,
+    "tgaName": "Royal Knight Loretta",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 1035500800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1035500801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9181,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510810,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61181,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 65852,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 76232,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 1181,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "3:24": {
+    "displayFlagId": 39200800,
+    "displayWhen": true,
+    "tgaName": "Magma Wyrm Makar",
+    "tgaSubcategory": "Liurnia of the Lakes",
+    "tgaFlags": [
+      {
+        "id": 39200800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 39200801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9126,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510260,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61126,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 73900,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 1126,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "4:0": {
+    "displayFlagId": 1034420800,
+    "displayWhen": true,
+    "tgaName": "Glintstone Dragon Adula",
+    "tgaSubcategory": "Moonlight Altar",
+    "tgaFlags": [
+      {
+        "id": 1034420800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1034420800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530260,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "4:1": {
+    "displayFlagId": 1033420800,
+    "displayWhen": true,
+    "tgaName": "Alecto, Black Knife Ringleader",
+    "tgaSubcategory": "Moonlight Altar",
+    "tgaFlags": [
+      {
+        "id": 1033420800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530265,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "5:0": {
+    "displayFlagId": 14000850,
+    "displayWhen": true,
+    "tgaName": "Red Wolf of Radagon",
+    "tgaSubcategory": "Academy of Raya Lucaria",
+    "tgaFlags": [
+      {
+        "id": 14000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 14000851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9117,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61117,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 60440,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71401,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 1117,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "5:1": {
+    "displayFlagId": 14000800,
+    "displayWhen": true,
+    "tgaName": "Rennala, Queen of the Full Moon",
+    "tgaSubcategory": "Academy of Raya Lucaria",
+    "tgaFlags": [
+      {
+        "id": 14000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 14000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 14000804,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9118,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 197,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61118,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1118,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71400,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 14008556,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 14009202,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 14009205,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3371,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3468,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3469,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "6:0": {
+    "displayFlagId": 32070800,
+    "displayWhen": true,
+    "tgaName": "Magma Wyrm",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 32070800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32070801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9266,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520660,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61266,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1266,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32078540,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:1": {
+    "displayFlagId": 30140800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Burial Watchdog",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 30140800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9214,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520140,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61214,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1214,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:2": {
+    "displayFlagId": 31210800,
+    "displayWhen": true,
+    "tgaName": "Frenzied Duelist",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 31210800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31210801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9243,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520430,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61243,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1243,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:3": {
+    "displayFlagId": 30150800,
+    "displayWhen": true,
+    "tgaName": "Cemetery Shade",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 30150800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9215,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520150,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61215,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1215,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:4": {
+    "displayFlagId": 32080800,
+    "displayWhen": true,
+    "tgaName": "Fallingstar Beast",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 32080800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32080801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9267,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520670,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61267,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1267,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32088590,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:5": {
+    "displayFlagId": 31110800,
+    "displayWhen": true,
+    "tgaName": "Putrid Crystallian Trio",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 31110800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9246,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520460,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61246,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1246,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:6": {
+    "displayFlagId": 1048400800,
+    "displayWhen": true,
+    "tgaName": "Mad Pumpkin Head Duo",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 1048400800,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:7": {
+    "displayFlagId": 1048370800,
+    "displayWhen": true,
+    "tgaName": "Decaying Ekzykes",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 1048370800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530400,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:8": {
+    "displayFlagId": 1049390800,
+    "displayWhen": true,
+    "tgaName": "Nox Swordstress & Nox Priest",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 1049390800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1049397800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76415,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "6:9": {
+    "displayFlagId": 1049380800,
+    "displayWhen": true,
+    "tgaName": "Commander O'Niel",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 1049380800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530405,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76412,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "6:10": {
+    "displayFlagId": 1047400800,
+    "displayWhen": true,
+    "tgaName": "Putrid Avatar",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 1047400800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65100,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65280,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "6:11": {
+    "displayFlagId": 1049370800,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 1049370800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1049377100,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65874,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "6:12": {
+    "displayFlagId": 1049370850,
+    "displayWhen": true,
+    "tgaName": "Death Rite Bird",
+    "tgaSubcategory": "Caelid",
+    "tgaFlags": [
+      {
+        "id": 1049370850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1049377110,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "6:13": {
+    "displayFlagId": 1051360800,
+    "displayWhen": true,
+    "tgaName": "Crucible Knight & Misbegotten Warrior",
+    "tgaSubcategory": "Redmane Castle",
+    "tgaFlags": [
+      {
+        "id": 1051360800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9183,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510830,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61183,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1183,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76419,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "6:14": {
+    "displayFlagId": 1252380800,
+    "displayWhen": true,
+    "tgaName": "Starscourge Radahn",
+    "tgaSubcategory": "Redmane Castle",
+    "tgaFlags": [
+      {
+        "id": 1252380800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1252380801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9130,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510300,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61130,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1130,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 3613,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3668,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 76422,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 310,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 73016,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 910,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9414,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9415,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9416,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9417,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:0": {
+    "displayFlagId": 31200800,
+    "displayWhen": true,
+    "tgaName": "Cleanrot Knight",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 31200800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9245,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520450,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61245,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1245,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:1": {
+    "displayFlagId": 31100800,
+    "displayWhen": true,
+    "tgaName": "Beastman of Farum Azula",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 31100800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31100801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9244,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520440,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61244,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1244,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:2": {
+    "displayFlagId": 30160800,
+    "displayWhen": true,
+    "tgaName": "Putrid Tree Spirit",
+    "tgaSubcategory": "Redmane Castle",
+    "tgaFlags": [
+      {
+        "id": 30160800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9216,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510260,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61216,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1216,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:3": {
+    "displayFlagId": 34130800,
+    "displayWhen": true,
+    "tgaName": "Godskin Apostle",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 34130800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9173,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510730,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61173,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1173,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:4": {
+    "displayFlagId": 1051430800,
+    "displayWhen": true,
+    "tgaName": "Black Blade Kindred",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 1051430800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530425,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:5": {
+    "displayFlagId": 1052410800,
+    "displayWhen": true,
+    "tgaName": "Flying Dragon Greyll",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 1052410800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530420,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:6": {
+    "displayFlagId": 1051400800,
+    "displayWhen": true,
+    "tgaName": "Putrid Avatar",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 1051400800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65110,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65260,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "7:7": {
+    "displayFlagId": 1049390850,
+    "displayWhen": true,
+    "tgaName": "Battlemage Hugues",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 1049390850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1049397850,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "7:8": {
+    "displayFlagId": 1052410850,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 1052410850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1052417100,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65819,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "7:9": {
+    "displayFlagId": 1048410800,
+    "displayWhen": true,
+    "tgaName": "Bell Bearing Hunter",
+    "tgaSubcategory": "Greyoll's Dragonbarrow",
+    "tgaFlags": [
+      {
+        "id": 1048410800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1048417800,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:0": {
+    "displayFlagId": 31190850,
+    "displayWhen": true,
+    "tgaName": "Necromancer Garris",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 31190850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9249,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520490,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61249,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1249,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:1": {
+    "displayFlagId": 31190800,
+    "displayWhen": true,
+    "tgaName": "Black Knife Assassin (Sage's Cave)",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 31190800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9242,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520420,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61242,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1242,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:2": {
+    "displayFlagId": 32040800,
+    "displayWhen": true,
+    "tgaName": "Stonedigger Troll",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 32040800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9263,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520630,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61263,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1263,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:3": {
+    "displayFlagId": 32050800,
+    "displayWhen": true,
+    "tgaName": "Crystalian Duo",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 32050800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32050801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9265,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520650,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61265,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1265,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32058590,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:4": {
+    "displayFlagId": 1040520800,
+    "displayWhen": true,
+    "tgaName": "Black Knife Assassin (Sainted Hero's Grave)",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1040520800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530350,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:5": {
+    "displayFlagId": 30080800,
+    "displayWhen": true,
+    "tgaName": "Ancient Hero of Zamor",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 30080800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9208,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520080,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61208,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1208,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:6": {
+    "displayFlagId": 31180800,
+    "displayWhen": true,
+    "tgaName": "Omenkiller & Miranda the Blighted Bloom",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 31180800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9241,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520410,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61241,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1241,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:7": {
+    "displayFlagId": 30120800,
+    "displayWhen": true,
+    "tgaName": "Perfumer Tricia & Misbegotten Warrior",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 30120800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9211,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520110,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61211,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1211,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:8": {
+    "displayFlagId": 30070800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Burial Watchdog",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 30070800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9212,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520120,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61212,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1212,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:9": {
+    "displayFlagId": 1041520800,
+    "displayWhen": true,
+    "tgaName": "Ancient Dragon Lansseax",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1037510800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1037510810,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1041520820,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530300,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:10": {
+    "displayFlagId": 1038510800,
+    "displayWhen": true,
+    "tgaName": "Demi-Human Queen Gilika",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1038510800,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:11": {
+    "displayFlagId": 1040530800,
+    "displayWhen": true,
+    "tgaName": "Sanguine Noble",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1040530800,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:12": {
+    "displayFlagId": 1042550800,
+    "displayWhen": true,
+    "tgaName": "Godskin Apostle",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1042550800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530325,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76313,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "8:13": {
+    "displayFlagId": 1041500800,
+    "displayWhen": true,
+    "tgaName": "Fallingstar Beast",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1041500800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530310,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:14": {
+    "displayFlagId": 1041510800,
+    "displayWhen": true,
+    "tgaName": "Tree Sentinel Duo",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1041510800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530335,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:15": {
+    "displayFlagId": 1038520800,
+    "displayWhen": true,
+    "tgaName": "Tibia Mariner",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1038520800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530385,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:16": {
+    "displayFlagId": 1041530800,
+    "displayWhen": true,
+    "fallbackFlagIds": [
+      1042550800
+    ],
+    "fallbackWhen": true,
+    "tgaName": "Wormface",
+    "tgaSubcategory": "Altus Plateau",
+    "sourceNote": "Compatibility fallback for Hexinton CT line 109481, which uses 0xA483A:7 for Wormface.",
+    "tgaFlags": [
+      {
+        "id": 1041530800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65000,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65060,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "8:17": {
+    "displayFlagId": 1039500800,
+    "displayWhen": true,
+    "tgaName": "Godefroy the Grafted",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1039500800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1039507100,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "8:18": {
+    "displayFlagId": 1039510800,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1039510800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1039517200,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65868,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "8:19": {
+    "displayFlagId": 1039540800,
+    "displayWhen": true,
+    "tgaName": "Elemer of the Briar",
+    "tgaSubcategory": "Altus Plateau",
+    "tgaFlags": [
+      {
+        "id": 1039540800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9182,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510820,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61182,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1182,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76322,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "9:0": {
+    "displayFlagId": 34120800,
+    "displayWhen": true,
+    "tgaName": "Onyx Lord",
+    "tgaSubcategory": "Capital Outskirts",
+    "tgaFlags": [
+      {
+        "id": 34120800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 34120801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9264,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520640,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61264,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1264,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 73432,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 73430,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "9:1": {
+    "displayFlagId": 30130800,
+    "displayWhen": true,
+    "tgaName": "Grave Warden Duelist",
+    "tgaSubcategory": "Capital Outskirts",
+    "tgaFlags": [
+      {
+        "id": 30130800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9213,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520130,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61213,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1213,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "9:2": {
+    "displayFlagId": 30100800,
+    "displayWhen": true,
+    "tgaName": "Crucible Knight & Crucible Knight Ordovis",
+    "tgaSubcategory": "Capital Outskirts",
+    "tgaFlags": [
+      {
+        "id": 30100800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9210,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520100,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61210,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1210,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "9:3": {
+    "displayFlagId": 1045520800,
+    "displayWhen": true,
+    "tgaName": "Draconic Tree Sentinel",
+    "tgaSubcategory": "Capital Outskirts",
+    "tgaFlags": [
+      {
+        "id": 1045520800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530315,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "9:4": {
+    "displayFlagId": 1044530800,
+    "displayWhen": true,
+    "tgaName": "Deathbird",
+    "tgaSubcategory": "Capital Outskirts",
+    "tgaFlags": [
+      {
+        "id": 1044530800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1044537300,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "9:5": {
+    "displayFlagId": 1043530800,
+    "displayWhen": true,
+    "tgaName": "Bell Bearing Hunter",
+    "tgaSubcategory": "Capital Outskirts",
+    "tgaFlags": [
+      {
+        "id": 1043530800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1043537400,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "10:0": {
+    "displayFlagId": 31090800,
+    "displayWhen": true,
+    "tgaName": "Demi-Human Queen Margot",
+    "tgaSubcategory": "Mt. Gelmir",
+    "sourceNote": "Hexinton CT line 109893 uses 0x172726:7; TGA duplicated Demi-Human Queen Maggie.",
+    "tgaFlags": [
+      {
+        "id": 31090800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9240,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520400,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61240,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1240,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "10:1": {
+    "displayFlagId": 31070800,
+    "displayWhen": true,
+    "tgaName": "Kindred of Rot Duo",
+    "tgaSubcategory": "Mt. Gelmir",
+    "tgaFlags": [
+      {
+        "id": 31070800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 31070801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9239,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520390,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61239,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1239,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "10:2": {
+    "displayFlagId": 30090800,
+    "displayWhen": true,
+    "tgaName": "Red Wolf of the Champion",
+    "tgaSubcategory": "Mt. Gelmir",
+    "tgaFlags": [
+      {
+        "id": 30090800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9209,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520090,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61209,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1209,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "10:3": {
+    "displayFlagId": 1035530800,
+    "displayWhen": true,
+    "tgaName": "Magma Wyrm",
+    "tgaSubcategory": "Mt. Gelmir",
+    "tgaFlags": [
+      {
+        "id": 1035530800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530390,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "10:4": {
+    "displayFlagId": 1036540800,
+    "displayWhen": true,
+    "tgaName": "Full-Grown Fallingstar Beast",
+    "tgaSubcategory": "Mt. Gelmir",
+    "tgaFlags": [
+      {
+        "id": 1036540800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530375,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "10:5": {
+    "displayFlagId": 1037530800,
+    "displayWhen": true,
+    "tgaName": "Demi-Human Queen Maggie",
+    "tgaSubcategory": "Mt. Gelmir",
+    "tgaFlags": [
+      {
+        "id": 1037530800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 60450,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "10:6": {
+    "displayFlagId": 1037540810,
+    "displayWhen": true,
+    "tgaName": "Ulcerated Tree Spirit",
+    "tgaSubcategory": "Mt. Gelmir",
+    "tgaFlags": [
+      {
+        "id": 1037540810,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65180,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65250,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "11:0": {
+    "displayFlagId": 16000860,
+    "displayWhen": true,
+    "tgaName": "Abductor Virgins",
+    "tgaSubcategory": "Volcano Manor",
+    "tgaFlags": [
+      {
+        "id": 16000860,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9129,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510290,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61129,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1219,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "11:1": {
+    "displayFlagId": 16000850,
+    "displayWhen": true,
+    "tgaName": "Godskin Noble",
+    "tgaSubcategory": "Volcano Manor",
+    "tgaFlags": [
+      {
+        "id": 16000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 16000851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9121,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510210,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61121,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1121,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71601,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 16000520,
+        "eval": "INVERSE"
+      },
+      {
+        "id": 16001520,
+        "eval": "INVERSE"
+      }
+    ]
+  },
+  "11:2": {
+    "displayFlagId": 16000800,
+    "displayWhen": true,
+    "tgaName": "Rykard, Lord of Blasphemy",
+    "tgaSubcategory": "Volcano Manor",
+    "tgaFlags": [
+      {
+        "id": 16000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 16000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9122,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510220,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61122,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1122,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71600,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3109,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3110,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 3111,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 16009265,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 16009264,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 16009268,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "12:0": {
+    "displayFlagId": 35000850,
+    "displayWhen": true,
+    "tgaName": "Esgar, Priest of Blood",
+    "tgaSubcategory": "Leyndell, Royal Capital",
+    "tgaFlags": [
+      {
+        "id": 35000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9222,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520220,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61222,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1222,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "12:1": {
+    "displayFlagId": 34140850,
+    "displayWhen": true,
+    "tgaName": "Fell Twins",
+    "tgaSubcategory": "Capital Outskirts",
+    "tgaFlags": [
+      {
+        "id": 34140850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 34140851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 34140865,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9174,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510740,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 10740,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1174,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "12:2": {
+    "displayFlagId": 35000800,
+    "displayWhen": true,
+    "tgaName": "Mohg, the Omen",
+    "tgaSubcategory": "Leyndell, Royal Capital",
+    "tgaFlags": [
+      {
+        "id": 35000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 35000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9125,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510250,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61125,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1125,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 35000820,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 73500,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "12:3": {
+    "displayFlagId": 11000850,
+    "displayWhen": true,
+    "tgaName": "Godfrey, First Elden Lord",
+    "tgaSubcategory": "Leyndell, Royal Capital",
+    "tgaFlags": [
+      {
+        "id": 11000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 11000851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9105,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 60520,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61105,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1105,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71101,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "12:4": {
+    "displayFlagId": 11000800,
+    "displayWhen": true,
+    "tgaName": "Morgott, the Omen King",
+    "tgaSubcategory": "Leyndell, Royal Capital",
+    "tgaFlags": [
+      {
+        "id": 11000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 11000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9104,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510040,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61104,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1104,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 11009405,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 11009406,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 11000500,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 11000501,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9000,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71100,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 400001,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "13:0": {
+    "displayFlagId": 1048510800,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Forbidden Lands",
+    "tgaFlags": [
+      {
+        "id": 1048510800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1048517700,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65870,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "13:1": {
+    "displayFlagId": 1049520800,
+    "displayWhen": true,
+    "tgaName": "Black Blade Kindred",
+    "tgaSubcategory": "Forbidden Lands",
+    "tgaFlags": [
+      {
+        "id": 1049520800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530505,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "14:0": {
+    "displayFlagId": 30170800,
+    "displayWhen": true,
+    "tgaName": "Ancient Hero of Zamor",
+    "tgaSubcategory": "Flame Peak",
+    "tgaFlags": [
+      {
+        "id": 30170800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9217,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520170,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61217,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1217,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "14:1": {
+    "displayFlagId": 30180800,
+    "displayWhen": true,
+    "tgaName": "Ulcerated Tree Spirit",
+    "tgaSubcategory": "Mountaintops of the Giants",
+    "tgaFlags": [
+      {
+        "id": 30180800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 30180801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9218,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520180,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61218,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1218,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "14:2": {
+    "displayFlagId": 31220800,
+    "displayWhen": true,
+    "tgaName": "Spirit-Caller Snail",
+    "tgaSubcategory": "Mountaintops of the Giants",
+    "tgaFlags": [
+      {
+        "id": 31220800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9248,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520480,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61248,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1248,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "14:3": {
+    "displayFlagId": 1254560800,
+    "displayWhen": true,
+    "tgaName": "Borealis the Freezing Fog",
+    "tgaSubcategory": "Mountaintops of the Giants",
+    "tgaFlags": [
+      {
+        "id": 1254560800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530510,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "14:4": {
+    "displayFlagId": 1052560800,
+    "displayWhen": true,
+    "tgaName": "Erdtree Avatar",
+    "tgaSubcategory": "Mountaintops of the Giants",
+    "tgaFlags": [
+      {
+        "id": 1052560800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65050,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65070,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "14:5": {
+    "displayFlagId": 1053560800,
+    "displayWhen": true,
+    "tgaName": "Roundtable Knight Vyke",
+    "tgaSubcategory": "Mountaintops of the Giants",
+    "tgaFlags": [
+      {
+        "id": 1053560800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530515,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "14:6": {
+    "displayFlagId": 1050570800,
+    "displayWhen": true,
+    "tgaName": "Death Rite Bird",
+    "tgaSubcategory": "Mountaintops of the Giants",
+    "tgaFlags": [
+      {
+        "id": 1050570800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530530,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "14:7": {
+    "displayFlagId": 1051570800,
+    "displayWhen": true,
+    "tgaName": "Commander Niall",
+    "tgaSubcategory": "Mountaintops of the Giants",
+    "tgaFlags": [
+      {
+        "id": 1051570800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1051570801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9184,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510840,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61184,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1184,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76524,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "14:8": {
+    "displayFlagId": 1252520800,
+    "displayWhen": true,
+    "tgaName": "Fire Giant",
+    "tgaSubcategory": "Flame Peak",
+    "tgaFlags": [
+      {
+        "id": 1252520800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1252520801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9131,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510310,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61131,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1131,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76509,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 76510,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "15:0": {
+    "displayFlagId": 13000850,
+    "displayWhen": true,
+    "tgaName": "Godskin Duo",
+    "tgaSubcategory": "Crumbling Farum Azula",
+    "tgaFlags": [
+      {
+        "id": 13000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 13000851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9114,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510140,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61114,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1114,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65847,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 71302,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "15:1": {
+    "displayFlagId": 13000830,
+    "displayWhen": true,
+    "tgaName": "Dragonlord Placidusax",
+    "tgaSubcategory": "Crumbling Farum Azula",
+    "tgaFlags": [
+      {
+        "id": 13000830,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9115,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510150,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61115,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1115,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71301,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "15:2": {
+    "displayFlagId": 13000800,
+    "displayWhen": true,
+    "tgaName": "Maliketh, the Black Blade",
+    "tgaSubcategory": "Crumbling Farum Azula",
+    "tgaFlags": [
+      {
+        "id": 13000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 13000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9116,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510160,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61116,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1116,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71300,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 13009205,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "16:0": {
+    "displayFlagId": 30200800,
+    "displayWhen": true,
+    "tgaName": "Stray Mimic Tear",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 30200800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9220,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520200,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61220,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1220,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "16:1": {
+    "displayFlagId": 30190800,
+    "displayWhen": true,
+    "tgaName": "Putrid Grave Warden Duelist",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 30190800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9219,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520190,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61219,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1219,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "16:2": {
+    "displayFlagId": 32110800,
+    "displayWhen": true,
+    "tgaName": "Astel, Stars of Darkness",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 32110800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32110801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9268,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520680,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61268,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1268,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 32110590,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "16:3": {
+    "displayFlagId": 31120800,
+    "displayWhen": true,
+    "tgaName": "Misbegotten Crusader",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 31120800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9247,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520470,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61247,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1247,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "16:4": {
+    "displayFlagId": 1050560800,
+    "displayWhen": true,
+    "tgaName": "Great Wyrm Theodorix",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 1050560800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530550,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "16:5": {
+    "displayFlagId": 1050570850,
+    "displayWhen": true,
+    "tgaName": "Putrid Avatar",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 1050570850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65130,
+        "eval": "function(newValue"
+      },
+      {
+        "id": 65170,
+        "eval": "function(newValue"
+      }
+    ]
+  },
+  "16:6": {
+    "displayFlagId": 1248550800,
+    "displayWhen": true,
+    "tgaName": "Night's Cavalry",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 1248550800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1048557700,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1048557710,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "16:7": {
+    "displayFlagId": 1048570800,
+    "displayWhen": true,
+    "tgaName": "Death Rite Bird",
+    "tgaSubcategory": "Consecrated Snowfield",
+    "tgaFlags": [
+      {
+        "id": 1048570800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 1048577700,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "17:0": {
+    "displayFlagId": 15000850,
+    "displayWhen": true,
+    "tgaName": "Lorretta, Knight of the Haligtree",
+    "tgaSubcategory": "Miquella's Haligtree",
+    "tgaFlags": [
+      {
+        "id": 15000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 15000851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9119,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510190,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61119,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1119,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71505,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "17:1": {
+    "displayFlagId": 15000800,
+    "displayWhen": true,
+    "tgaName": "Malenia, Blade of Miquella",
+    "tgaSubcategory": "Miquella's Haligtree",
+    "tgaFlags": [
+      {
+        "id": 15000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 15000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9120,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510200,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61120,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1120,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71500,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "18:0": {
+    "displayFlagId": 12020830,
+    "displayWhen": true,
+    "tgaName": "Dragonkin Soldier (Siofra River)",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12020830,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530620,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "18:1": {
+    "displayFlagId": 12080800,
+    "displayWhen": true,
+    "tgaName": "Ancestor Spirit",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12080800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9132,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510320,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61132,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1132,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12020600,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020601,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020602,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020603,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020604,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020605,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020606,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020607,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020609,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "18:2": {
+    "displayFlagId": 12020850,
+    "displayWhen": true,
+    "tgaName": "Mimic Tear",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12020850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12020851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9134,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510340,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 91134,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1134,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71221,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "18:3": {
+    "displayFlagId": 12090800,
+    "displayWhen": true,
+    "tgaName": "Regal Ancestor Spirit",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12090800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9133,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510330,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 91133,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1133,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12020620,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020621,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020622,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020623,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020624,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020625,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 12020629,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "18:4": {
+    "displayFlagId": 12020800,
+    "displayWhen": true,
+    "tgaName": "Valiant Gargoyles",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12020800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12020801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9110,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510100,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61110,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1110,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71220,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 65840,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "19:0": {
+    "displayFlagId": 12050800,
+    "displayWhen": true,
+    "tgaName": "Mohg, Lord of Blood",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12050800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12050801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9112,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510120,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61112,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1112,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71250,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 12059261,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "20:0": {
+    "displayFlagId": 12010800,
+    "displayWhen": true,
+    "tgaName": "Dragonkin Soldier of Nokstella",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12010801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9109,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510090,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61109,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1109,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71210,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "20:1": {
+    "displayFlagId": 12010850,
+    "displayWhen": true,
+    "tgaName": "Dragonkin Soldier (Lake of Rot)",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12010850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530600,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "20:2": {
+    "displayFlagId": 12040800,
+    "displayWhen": true,
+    "tgaName": "Astel, Naturalborn of the Void",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12040800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9108,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510080,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61108,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1108,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71240,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "21:0": {
+    "displayFlagId": 12030390,
+    "displayWhen": true,
+    "tgaName": "Crucible Knight Siluria",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12030390,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12037950,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "21:1": {
+    "displayFlagId": 12030800,
+    "displayWhen": true,
+    "tgaName": "Fia's Champions",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12030800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12030801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9135,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510350,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61135,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1135,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71230,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4128,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4129,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4130,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4131,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4132,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4066,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "21:2": {
+    "displayFlagId": 12030850,
+    "displayWhen": true,
+    "tgaName": "Lichdragon Fortissax",
+    "tgaSubcategory": "Underground",
+    "tgaFlags": [
+      {
+        "id": 12030850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 12030852,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9111,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510110,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61111,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1111,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 4130,
+        "eval": "INVERSE"
+      },
+      {
+        "id": 4131,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 4132,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4066,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4120,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 4123,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "22:0": {
+    "displayFlagId": 11050850,
+    "displayWhen": true,
+    "tgaName": "Sir Gideon Ofnir, the All-Knowing",
+    "tgaSubcategory": "Leyndell, Capital of Ash",
+    "tgaFlags": [
+      {
+        "id": 11050850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 11050851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9106,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510060,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61106,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1106,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71121,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "22:1": {
+    "displayFlagId": 11050800,
+    "displayWhen": true,
+    "tgaName": "Hoarah Loux, Warrior",
+    "tgaSubcategory": "Leyndell, Capital of Ash",
+    "tgaFlags": [
+      {
+        "id": 11050800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 11050801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9107,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510070,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61107,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1107,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71120,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "22:2": {
+    "displayFlagId": 19000800,
+    "displayWhen": true,
+    "tgaName": "Elden Beast",
+    "tgaSubcategory": "Leyndell, Capital of Ash",
+    "tgaFlags": [
+      {
+        "id": 19000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 19000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 19000804,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 19001100,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9123,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510230,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61123,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1123,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 71900,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9400,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 9401,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 9402,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 9403,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 9404,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 9405,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 9406,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 9407,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 120,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "23:0": {
+    "displayFlagId": 2045440800,
+    "displayWhen": true,
+    "tgaName": "Ghostflame Dragon",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 2045440800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2045440820,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530860,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530861,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "23:1": {
+    "displayFlagId": 2046410800,
+    "displayWhen": true,
+    "tgaName": "Knight of the Solitary Gaol",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 2046410800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530820,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "23:2": {
+    "displayFlagId": 43000800,
+    "displayWhen": true,
+    "tgaName": "Chief Bloodfiend",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 43000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9280,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61280,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1280,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "23:3": {
+    "displayFlagId": 41020800,
+    "displayWhen": true,
+    "tgaName": "Lamenter",
+    "tgaSubcategory": "Charo's Hidden Grave",
+    "tgaFlags": [
+      {
+        "id": 41020800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 41020801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9277,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520770,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61277,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1277,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "23:4": {
+    "displayFlagId": 41000800,
+    "displayWhen": true,
+    "tgaName": "Demi-Human Swordmaster Onze",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 41000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9275,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520750,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61275,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1275,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "23:5": {
+    "displayFlagId": 20000800,
+    "displayWhen": true,
+    "tgaName": "Divine Beast Dancing Lion",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 20000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 20000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 20000544,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9140,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510400,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 20007810,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61140,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1140,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 72000,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "23:6": {
+    "displayFlagId": 2048440800,
+    "displayWhen": true,
+    "tgaName": "Rellana, Twin Moon Knight",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 2048440800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9190,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510900,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61190,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1190,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76823,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "24:0": {
+    "displayFlagId": 2049430800,
+    "displayWhen": true,
+    "tgaName": "Ghostflame Dragon",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 2049430800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530945,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:1": {
+    "displayFlagId": 2049450800,
+    "displayWhen": true,
+    "tgaName": "Ralva the Great Red Bear",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 2049450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530930,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:2": {
+    "displayFlagId": 2044470800,
+    "displayWhen": true,
+    "tgaName": "Rugalea the Great Red Bear",
+    "tgaSubcategory": "Rauh Base",
+    "tgaFlags": [
+      {
+        "id": 2044470800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530905,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:3": {
+    "displayFlagId": 2049440800,
+    "displayWhen": true,
+    "tgaName": "Dryleaf Dane",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 2049440800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2049449211,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 400730,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:4": {
+    "displayFlagId": 2049430850,
+    "displayWhen": true,
+    "tgaName": "Black Knight Edreed",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 2049430850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530965,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65911,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "24:5": {
+    "displayFlagId": 2047450800,
+    "displayWhen": true,
+    "tgaName": "Black Knight Garrew",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 2047450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530955,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:6": {
+    "displayFlagId": 2046450800,
+    "displayWhen": true,
+    "tgaName": "Red Bear",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 2046450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530900,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:7": {
+    "displayFlagId": 2051440800,
+    "displayWhen": true,
+    "tgaName": "Rakshasa",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 2051440800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530830,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:8": {
+    "displayFlagId": 25000800,
+    "displayWhen": true,
+    "tgaName": "Metyr, Mother of Fingers",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 25000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 25000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9155,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510550,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61155,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1155,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 72500,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:9": {
+    "displayFlagId": 2051450800,
+    "displayWhen": true,
+    "tgaName": "Count Ymir, Mother of Fingers",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 2051450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 400664,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:10": {
+    "displayFlagId": 40000800,
+    "displayWhen": true,
+    "tgaName": "Death Knight",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 40000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9270,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520700,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61270,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1270,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:11": {
+    "displayFlagId": 40010800,
+    "displayWhen": true,
+    "tgaName": "Death Knight",
+    "tgaSubcategory": "Rauh Base",
+    "tgaFlags": [
+      {
+        "id": 40010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9271,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520710,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61271,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1271,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:12": {
+    "displayFlagId": 41010800,
+    "displayWhen": true,
+    "tgaName": "Curseblade Labirith",
+    "tgaSubcategory": "Scadu Altus",
+    "tgaFlags": [
+      {
+        "id": 41010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9276,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520760,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61276,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1276,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "24:13": {
+    "displayFlagId": 21000850,
+    "displayWhen": true,
+    "tgaName": "Golden Hippopotamus",
+    "tgaSubcategory": "Shadow Keep",
+    "tgaFlags": [
+      {
+        "id": 21000850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 21000851,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9144,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510440,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61144,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1144,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 72101,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "24:14": {
+    "displayFlagId": 21010800,
+    "displayWhen": true,
+    "tgaName": "Messmer the Impaler",
+    "tgaSubcategory": "Shadow Keep",
+    "tgaFlags": [
+      {
+        "id": 21010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 21010801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9146,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510460,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61146,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1146,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 21018542,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 72110,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4368,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 2048459225,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "25:0": {
+    "displayFlagId": 2046460800,
+    "displayWhen": true,
+    "tgaName": "Divine Beast Dancing Lion",
+    "tgaSubcategory": "Ancient Ruins of Rauh",
+    "tgaFlags": [
+      {
+        "id": 2046460800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530940,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "25:1": {
+    "displayFlagId": 2044450800,
+    "displayWhen": true,
+    "tgaName": "Romina, Saint of the Bud",
+    "tgaSubcategory": "Ancient Ruins of Rauh",
+    "tgaFlags": [
+      {
+        "id": 2044450800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9160,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510600,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61160,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1160,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76945,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 20010196,
+        "eval": "function("
+      },
+      {
+        "id": 330,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "26:0": {
+    "displayFlagId": 2048380850,
+    "displayWhen": true,
+    "tgaName": "Ghostflame Dragon",
+    "tgaSubcategory": "Cerulean Coast",
+    "tgaFlags": [
+      {
+        "id": 2048380850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2048380870,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530840,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "26:1": {
+    "displayFlagId": 2046380800,
+    "displayWhen": true,
+    "tgaName": "Dancer of Ranah",
+    "tgaSubcategory": "Cerulean Coast",
+    "tgaFlags": [
+      {
+        "id": 2046380800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530810,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "26:2": {
+    "displayFlagId": 22000800,
+    "displayWhen": true,
+    "tgaName": "Putrescent Knight",
+    "tgaSubcategory": "Cerulean Coast",
+    "tgaFlags": [
+      {
+        "id": 22000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 22000802,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9148,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510480,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61148,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1148,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 72200,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 22009208,
+        "eval": "function("
+      },
+      {
+        "id": 22009222,
+        "eval": "function("
+      }
+    ]
+  },
+  "27:0": {
+    "displayFlagId": 2047390800,
+    "displayWhen": true,
+    "tgaName": "Death Rite Bird",
+    "tgaSubcategory": "Charo's Hidden Grave",
+    "tgaFlags": [
+      {
+        "id": 2047390800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530855,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 65931,
+        "eval": "ALWAYS_TRUE"
+      }
+    ]
+  },
+  "27:1": {
+    "displayFlagId": 2046400800,
+    "displayWhen": true,
+    "tgaName": "Demi-Human Queen Marigga",
+    "tgaSubcategory": "Cerulean Coast",
+    "tgaFlags": [
+      {
+        "id": 2046400800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530845,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "28:0": {
+    "displayFlagId": 2049410800,
+    "displayWhen": true,
+    "tgaName": "Jagged Peak Drake",
+    "tgaSubcategory": "Jagged Peak",
+    "tgaFlags": [
+      {
+        "id": 2049410800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530850,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "28:1": {
+    "displayFlagId": 2052400800,
+    "displayWhen": true,
+    "tgaName": "Jagged Peak Drake Duo",
+    "tgaSubcategory": "Jagged Peak",
+    "tgaFlags": [
+      {
+        "id": 2052400800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2048429205,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 4267,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 4268,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 2052409206,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 2052409207,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "28:2": {
+    "displayFlagId": 43010800,
+    "displayWhen": true,
+    "tgaName": "Ancient Dragon-Man",
+    "tgaSubcategory": "Gravesite Plain",
+    "tgaFlags": [
+      {
+        "id": 43010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9281,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 520810,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61281,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1281,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 43018540,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "28:3": {
+    "displayFlagId": 2054390850,
+    "displayWhen": true,
+    "tgaName": "Ancient Dragon Senessax",
+    "tgaSubcategory": "Jagged Peak",
+    "tgaFlags": [
+      {
+        "id": 2054390850,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530805,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "28:4": {
+    "displayFlagId": 2054390800,
+    "displayWhen": true,
+    "tgaName": "Bayle, the Dread",
+    "tgaSubcategory": "Jagged Peak",
+    "tgaFlags": [
+      {
+        "id": 2054390800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2054390801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9163,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510630,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61163,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1163,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76853,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "29:0": {
+    "displayFlagId": 2050470800,
+    "displayWhen": true,
+    "tgaName": "Tree Sentinel (Ambush)",
+    "tgaSubcategory": "Scaduview",
+    "tgaFlags": [
+      {
+        "id": 2050470800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530935,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "29:1": {
+    "displayFlagId": 2050480860,
+    "displayWhen": true,
+    "tgaName": "Tree Sentinel (Exposed)",
+    "tgaSubcategory": "Scaduview",
+    "tgaFlags": [
+      {
+        "id": 2050480860,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530950,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "29:2": {
+    "displayFlagId": 2052480800,
+    "displayWhen": true,
+    "tgaName": "Fallingstar Beast",
+    "tgaSubcategory": "Scaduview",
+    "tgaFlags": [
+      {
+        "id": 2052480800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 530960,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "29:3": {
+    "displayFlagId": 2049480800,
+    "displayWhen": true,
+    "tgaName": "Commander Gaius",
+    "tgaSubcategory": "Scaduview",
+    "tgaFlags": [
+      {
+        "id": 2049480800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2049480801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9164,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510640,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61164,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1164,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76930,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "29:4": {
+    "displayFlagId": 2050480800,
+    "displayWhen": true,
+    "tgaName": "Scadutree Avatar",
+    "tgaSubcategory": "Shadow Keep",
+    "tgaFlags": [
+      {
+        "id": 2050480800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2050480801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9162,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510620,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61162,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1162,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76960,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "30:0": {
+    "displayFlagId": 2052430800,
+    "displayWhen": true,
+    "tgaName": "Jori, Elder Inquisitor",
+    "tgaSubcategory": "Abyssal Woods",
+    "tgaFlags": [
+      {
+        "id": 2052430800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 2052432801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9161,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510610,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 61161,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1161,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 76862,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  },
+  "30:1": {
+    "displayFlagId": 28000800,
+    "displayWhen": true,
+    "tgaName": "Midra, Lord of Frenzied Flame",
+    "tgaSubcategory": "Abyssal Woods",
+    "tgaFlags": [
+      {
+        "id": 28000800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 28000801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9156,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510560,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61156,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 72800,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 1156,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 28009211,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 28009212,
+        "eval": "IDENTITY"
+      }
+    ]
+  },
+  "31:0": {
+    "displayFlagId": 20010800,
+    "displayWhen": true,
+    "tgaName": "Promised Consort Radahn",
+    "tgaSubcategory": "Enir-Ilim",
+    "tgaFlags": [
+      {
+        "id": 20010800,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 20010801,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 9143,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 510430,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 61143,
+        "eval": "ALWAYS_TRUE"
+      },
+      {
+        "id": 1143,
+        "eval": "IDENTITY"
+      },
+      {
+        "id": 72010,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 128,
+        "eval": "ALWAYS_FALSE"
+      },
+      {
+        "id": 20017981,
+        "eval": "ALWAYS_FALSE"
+      }
+    ]
+  }
+}

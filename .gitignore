@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+.runtime/
+
+# Local machine configuration
+save_file_path.js
+
+# Local installers / third-party tooling
+*.dmg
+eldenring_all-in-one_*.ct

@@ -1,0 +1,160 @@
+{
+  "title": "RL1 Region-Locked",
+  "includeDlc": true,
+  "bossListMode": "allBosses",
+  "customBossIds": [
+    "0:2",
+    "0:3",
+    "0:4",
+    "0:5",
+    "6:14",
+    "12:4",
+    "22:2"
+  ],
+  "splitIndex": 6,
+  "startedAt": 1778764800424,
+  "elapsedMs": 0,
+  "running": true,
+  "totalNow": 3,
+  "totalPB": 14,
+  "bosses": [
+    {
+      "name": "Tree Sentinel",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 3,
+      "killed": true
+    },
+    {
+      "name": "Beastman of Farum Azula",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": true
+    },
+    {
+      "name": "Soldier of Godrick",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": true
+    },
+    {
+      "name": "Demi-Human Chiefs",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": true
+    },
+    {
+      "name": "Flying Dragon Agheel",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": true
+    },
+    {
+      "name": "Patches",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": true
+    },
+    {
+      "name": "Mad Pumpkin Head",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": false
+    },
+    {
+      "name": "Stonedigger Troll",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": false
+    },
+    {
+      "name": "Bloodhound Knight Darriwil",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": false
+    },
+    {
+      "name": "Crucible Knight",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": false,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": false
+    },
+    {
+      "name": "Margit",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": true,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": false
+    },
+    {
+      "name": "Godrick",
+      "region": "Limgrave",
+      "category": "Boss",
+      "required": true,
+      "pb": "0(0)",
+      "now": 0,
+      "killed": false
+    }
+  ],
+  "rules": [
+    {
+      "text": "Rune Level 1",
+      "done": true
+    },
+    {
+      "text": "Region lock dışına çıkma",
+      "done": true
+    },
+    {
+      "text": "Rune Arc yok",
+      "done": true
+    }
+  ],
+  "tasks": [
+    {
+      "text": "Axe Talisman al",
+      "done": true
+    },
+    {
+      "text": "Claymore al",
+      "done": true
+    },
+    {
+      "text": "Lion's Claw al",
+      "done": true
+    }
+  ],
+  "selectedCharacterSlot": 2,
+  "platinumManual": {}
+}
