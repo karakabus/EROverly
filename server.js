@@ -150,6 +150,7 @@ function nowElapsed(state) {
 
 function normalizeState(state) {
   state.includeDlc = state.includeDlc !== false;
+  state.showDeathCounter = state.showDeathCounter !== false;
   state.bossListMode = BOSS_LIST_MODES.has(state.bossListMode) ? state.bossListMode : "allBosses";
   state.customBossIds = normalizeBossIds(state.customBossIds, state.includeDlc);
   state.platinumManual = normalizePlatinumManual(state.platinumManual);
@@ -220,6 +221,10 @@ function applyAction(action) {
 
   if (action.type === "setIncludeDlc") {
     state.includeDlc = Boolean(action.includeDlc);
+  }
+
+  if (action.type === "setShowDeathCounter") {
+    state.showDeathCounter = Boolean(action.showDeathCounter);
   }
 
   if (action.type === "setBossListMode") {

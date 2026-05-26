@@ -90,6 +90,17 @@ body.panel-collapsed .boss-top {
   white-space: nowrap;
 }
 
+.death-counter {
+  min-height: 20px;
+  padding: 0 2px 4px;
+  color: #f3f0a2;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: left;
+  white-space: nowrap;
+}
+
 .boss-summary {
   color: #eeee9b;
   font-size: 20px;

@@ -1,6 +1,7 @@
 {
-  "title": "RL1 Region-Locked",
+  "title": "Incantain Region-Locked",
   "includeDlc": true,
+  "showDeathCounter": true,
   "bossListMode": "allBosses",
   "customBossIds": [
     "0:2",

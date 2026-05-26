@@ -11,6 +11,7 @@ function render(s) {
     ? `${progress.killed}/${progress.total}`
     : "0/207";
   updateGameTime();
+  updateDeathCounter();
   document.getElementById("characterLabel").textContent = formatCharacter(s);
   document.getElementById("saveStatus").textContent = formatSaveStatus(s.saveStatus, progress);
   renderRegions(progress);
@@ -30,6 +31,14 @@ function togglePanelCollapsed() {
 function updateGameTime() {
   const node = document.getElementById("gameTime");
   if (node) node.textContent = formatGameTime(state);
+}
+
+function updateDeathCounter() {
+  const node = document.getElementById("deathCounter");
+  if (!node) return;
+  const visible = !state || state.showDeathCounter !== false;
+  node.hidden = !visible;
+  node.textContent = visible ? formatDeathCounter(state) : "";
 }
 
 function renderRegions(progress) {
@@ -102,6 +111,11 @@ function formatGameTime(s) {
   const readAt = Number(s.selectedCharacter.playTimeReadAt);
   const elapsed = Number.isFinite(readAt) ? Math.max(0, (Date.now() - readAt) / 1000) : 0;
   return `Oyun Süresi ${formatDuration(s.selectedCharacter.playTimeSeconds + elapsed)}`;
+}
+
+function formatDeathCounter(s) {
+  const deaths = s && s.selectedCharacter ? Number(s.selectedCharacter.deathCount) : NaN;
+  return Number.isFinite(deaths) ? `Ölüm: ${Math.max(0, Math.floor(deaths))}` : "Ölüm: -";
 }
 
 function formatDuration(seconds) {

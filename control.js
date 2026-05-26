@@ -18,6 +18,7 @@ const i18n = {
     saveFileUploadFailed: "Save file selection failed",
     bossList: "Boss List",
     includeDlc: "Include DLC",
+    showDeathCounter: "Show Death Counter",
     listType: "List Type",
     allBosses: "All Bosses",
     allRemembrances: "All Remembrances",
@@ -72,6 +73,7 @@ const i18n = {
     saveFileUploadFailed: "Save dosyası seçilemedi",
     bossList: "Boss Listesi",
     includeDlc: "DLC Dahil",
+    showDeathCounter: "Ölüm Sayacını Göster",
     listType: "Liste Tipi",
     allBosses: "Tüm Bosslar",
     allRemembrances: "Tüm Remembrance Bossları",
@@ -260,6 +262,7 @@ function render() {
       : (progress ? `${text("bosses")} — ${progress.killed} / ${progress.total}` : text("bosses"));
   renderChallengeTitle();
   renderIncludeDlc();
+  renderShowDeathCounter();
   renderBossListMode();
   renderSaveStatus(state.saveStatus);
 
@@ -299,6 +302,12 @@ function renderIncludeDlc() {
   const input = document.getElementById("includeDlcSwitch");
   if (!input || document.activeElement === input) return;
   input.checked = state.includeDlc !== false;
+}
+
+function renderShowDeathCounter() {
+  const input = document.getElementById("showDeathCounterSwitch");
+  if (!input || document.activeElement === input) return;
+  input.checked = state.showDeathCounter !== false;
 }
 
 function renderBossListMode() {
@@ -634,6 +643,10 @@ document.getElementById("saveFileInput").addEventListener("change", (e) => {
 
 document.getElementById("includeDlcSwitch").addEventListener("change", (e) => {
   send({ type: "setIncludeDlc", includeDlc: e.target.checked });
+});
+
+document.getElementById("showDeathCounterSwitch").addEventListener("change", (e) => {
+  send({ type: "setShowDeathCounter", showDeathCounter: e.target.checked });
 });
 
 document.getElementById("bossListModeSelect").addEventListener("change", (e) => {

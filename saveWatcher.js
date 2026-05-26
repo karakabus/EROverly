@@ -21,6 +21,9 @@ const CHARACTER_SUMMARY_MENU_OFFSET = 0x10 + 0x04 + 0x08 + 0x140;
 const CHARACTER_SUMMARY_STRIDE = 0x24c;
 const CHARACTER_SUMMARY_LEVEL_OFFSET = 0x22;
 const CHARACTER_SUMMARY_PLAY_TIME_OFFSET = 0x26;
+const DEATH_SCAN_START = 15000;
+const DEATH_SCAN_END = 300000;
+const DEATH_ZERO_RUN_MIN = 50000;
 const MAX_PROJECTILES = 200000;
 const MAX_UNLOCKED_REGIONS = 20000;
 
@@ -290,6 +293,82 @@ function readCharacterSummaryProfiles(containerBuffer, entries) {
   return profilesBySlot;
 }
 
+function findZeroRuns(buffer, minLength) {
+  const runs = [];
+  let start = -1;
+
+  for (let offset = 0; offset < buffer.length; offset++) {
+    if (start < 0 && buffer[offset] === 0) {
+      start = offset;
+      continue;
+    }
+
+    if (start >= 0 && buffer[offset] !== 0) {
+      if (offset - start >= minLength) runs.push([start, offset - start]);
+      start = -1;
+    }
+  }
+
+  return runs;
+}
+
+function findDeathCountOffset(slotBuffer) {
+  for (let offset = DEATH_SCAN_START; offset < slotBuffer.length && offset < DEATH_SCAN_END;) {
+    if (slotBuffer[offset] !== 0xff) {
+      offset++;
+      continue;
+    }
+
+    const runStart = offset;
+    while (slotBuffer[offset] === 0xff) offset++;
+    if (offset - runStart !== 4 || slotBuffer[offset + 1] !== 8) continue;
+
+    let zerosSeen = 0;
+    const windowEnd = Math.min(slotBuffer.length, offset + 47);
+    for (let scan = offset + 2; scan < windowEnd; scan++) {
+      if (slotBuffer[scan] === 0) zerosSeen++;
+      if (slotBuffer[scan] === 8) {
+        if (zerosSeen >= 20) return offset - 8;
+        break;
+      }
+    }
+  }
+
+  return -1;
+}
+
+function findNextFfPair(buffer, start) {
+  let firstFf = -1;
+  for (let offset = start; offset < buffer.length; offset++) {
+    if (firstFf < 0) {
+      if (buffer[offset] === 0xff) firstFf = offset;
+      continue;
+    }
+
+    if (buffer[offset] === 0xff && offset - firstFf === 3) return firstFf;
+    if (buffer[offset] !== 0xff) firstFf = -1;
+  }
+  return -1;
+}
+
+function readDeathCount(rawSlotBuffer) {
+  const slotBuffer = rawSlotBuffer.subarray(0, Math.min(rawSlotBuffer.length, SLOT_SIZE));
+  let offset = findDeathCountOffset(slotBuffer);
+
+  if (offset < 0 || offset <= 200000 || offset >= DEATH_SCAN_END) {
+    const zeroRuns = findZeroRuns(slotBuffer, DEATH_ZERO_RUN_MIN);
+    if (!zeroRuns.length) return null;
+
+    const firstZeroRun = zeroRuns.reduce((best, run) => (run[0] < best[0] ? run : best), [Infinity, 0]);
+    const ffOffset = findNextFfPair(slotBuffer, firstZeroRun[0]);
+    if (ffOffset <= 200000 || ffOffset >= DEATH_SCAN_END) return null;
+    offset = ffOffset - 4;
+  }
+
+  if (offset < 0 || offset + 4 > slotBuffer.length) return null;
+  return slotBuffer.readUInt32LE(offset);
+}
+
 function readDynamicCount(buffer, offset, max, label) {
   if (offset < 0 || offset + 4 > buffer.length) {
     throw new Error(`${label} offset save slot disinda`);
@@ -459,6 +538,7 @@ function parseSaveFile(filePath) {
       const found = summaryProfiles
         ? (summaryProfile ? { offset: null, value: summaryProfile.name } : null)
         : findCharacterName(saveSlotBuffer, rawSlotBuffer);
+      const deathCount = found ? readDeathCount(rawSlotBuffer) : null;
 
       nextBossProgressBySlot[slot] = buildBossProgress(slot, saveSlotBuffer);
 
@@ -471,6 +551,7 @@ function parseSaveFile(filePath) {
         level: summaryProfile ? summaryProfile.level : null,
         playTimeSeconds: summaryProfile ? summaryProfile.playTimeSeconds : null,
         playTimeReadAt: summaryProfile ? parsedAt : null,
+        deathCount,
         size: entry.size
       };
     })
