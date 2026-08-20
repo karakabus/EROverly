@@ -54,7 +54,7 @@ Enter  = Next Split
 
 ## CE'siz oyun otomasyonları
 
-Control paneldeki `Otomasyonları Aç` bağlantısı `/automation` sayfasına gider. Bu sayfa şimdilik ana oyun/DLC haritaları, ana oyun/DLC Lütuf Noktaları, `Rune Ekle` ve `Eşya Ekle` işlemlerini sunar. Cheat Engine'in açık veya kurulu olması gerekmez.
+Control paneldeki `Otomasyonları Aç` bağlantısı `/automation` sayfasına gider. Bu sayfa ana oyun/DLC haritaları, ana oyun/DLC Lütuf Noktaları, rune ve eşya ekleme, boss durumları, karakter statları ve ölümsüzlük işlemlerini sunar. Cheat Engine'in açık veya kurulu olması gerekmez.
 
 Windows yardımcı programını bir kez derle:
 
@@ -71,6 +71,20 @@ Yardımcı program genel bir CT yorumlayıcısı değildir. `eldenring_all-in-on
 Rune miktarı `1–999.999.999` aralığında tam sayı olmalıdır. Komut oyunun kendi `AddSoul` fonksiyonunu çağırır ve mevcut bakiye ile istenen miktarın toplamı `999.999.999` sınırını aşarsa işlemi reddeder.
 
 Eşya araması silah/kalkan, zırh, tılsım, büyü/eşya ve Ash of War listelerini kapsar. Sunucu yalnızca arama sonucundan seçilen katalog anahtarını kabul eder; serbest ürün kimliği veya bellek adresi gönderilemez. Eşya adedi `1–999` aralığında tam sayı olmalıdır.
+
+### Boss durumları
+
+`Boss Durumları` penceresi açıldığında mevcut Yaşıyor/Ölü değerleri çalışan oyunun belleğinden okunur. Canlı bellek okunamazsa son okunabilir save görüntüsü yalnızca mevcut durumu göstermek için kullanılabilir. Bosslar ada, konuma veya bölgeye göre aranabilir; ana oyun/DLC filtresi uygulanabilir ve birden fazla boss tek işlemde Yaşıyor ya da Ölü durumuna getirilebilir. Ortak event flag kullanan bosslar tek işlemde birbirine zıt durumlara getirilemez.
+
+Boss değişiklikleri için save yedeği seçeneği modal içinde ayrıca bulunur. Uygulanan canlı boss değişiklikleri overlay'e anında bildirilir.
+
+### Karakter statları
+
+`Karakter Statları` penceresi yüklü karakterin Level değerini ve sekiz temel statını canlı oyun belleğinden okur: Vigor, Mind, Endurance, Strength, Dexterity, Intelligence, Faith ve Arcane. Statlar `1–99`, hesaplanan Level ise `1–713` aralığında tutulur. Level, statlardaki toplam değişime göre otomatik hesaplanır; önce statlar, son olarak yeni Level yazılır. Bu işlemden önce save yedeği alınması önerilir.
+
+### Ölümsüzlük
+
+`Karakter ölümsüz`, karakterin hasar almaya devam edip ölmesini engeller. `Bosslar ölümsüz` ise yalnızca aktif bossu değil, bütün boss, düşman ve NPC'leri etkileyen genel `All No Dead` bayrağını değiştirir. Her iki ayar da yalnızca çalışan oyun oturumunda geçerlidir ve oyun kapandığında sıfırlanır.
 
 ## Hotkey programı
 
@@ -118,6 +132,8 @@ Control panelde `Save Dosyası Seç` düğmesiyle `.sl2` veya `.co2` dosyası se
 
 Control panelden `All Bosses`, `All Remembrances` ve `Custom Bosses` modları seçilebilir.
 `Custom Bosses` modunda boss listesi checkbox'lı açılır listeden oluşturulur ve satır sırası yukarı/aşağı düğmeleriyle değiştirilebilir.
+
+Overlay, save güncellemelerinde boss durumlarının küçük bir önbelleğini karşılaştırır. Yeni kesilen boss hangi bölgedeyse o bölgenin listesini otomatik açar ve görünür alanda ilgili bölgeye kaydırır; sıradaki bölgeye gidilmesi zorunlu değildir. Bir bölgenin bütün bossları kesildiğinde sonraki eksik bölgenin varsayılan olarak açılması davranışı da korunur.
 
 `state.json` dosyasındaki `tasks`, `rules` ve başlangıç ayarları elle de düzenlenebilir.
 
