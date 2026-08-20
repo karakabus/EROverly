@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elden Ring Hotkey Programı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="automation-body hotkey-body">
+  <main class="automation-shell hotkey-shell">
+    <div class="automation-toolbar">
+      <a class="button-link" href="/control.html">← Kontrol paneli</a>
+      <label class="automation-language" for="languageSelect">
+        <span>Dil</span>
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="tr" selected>Türkçe</option>
+        </select>
+      </label>
+    </div>
+    <div id="hotkeyRoot"></div>
+  </main>
+  <script src="hotkeys.js"></script>
+</body>
+</html>

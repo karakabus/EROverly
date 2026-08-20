@@ -16,6 +16,9 @@ const i18n = {
     uploadingSaveFile: "Uploading save file...",
     selectedSaveFile: "Selected save file",
     saveFileUploadFailed: "Save file selection failed",
+    hotkeyProgram: "Hotkey Program",
+    openHotkeyProgram: "Open Hotkey Program",
+    hotkeyProgramHint: "Build your own macros with triggers, key taps, holds, releases, and timed waits.",
     bossList: "Boss List",
     includeDlc: "Include DLC",
     showDeathCounter: "Show Death Counter",
@@ -71,6 +74,9 @@ const i18n = {
     uploadingSaveFile: "Save dosyası yükleniyor...",
     selectedSaveFile: "Seçilen save dosyası",
     saveFileUploadFailed: "Save dosyası seçilemedi",
+    hotkeyProgram: "Hotkey Programı",
+    openHotkeyProgram: "Hotkey Programını Aç",
+    hotkeyProgramHint: "Tetikleyici, basma, basılı tutma, bırakma ve bekleme adımlarından kendi makrolarını oluştur.",
     bossList: "Boss Listesi",
     includeDlc: "DLC Dahil",
     showDeathCounter: "Ölüm Sayacını Göster",
@@ -261,6 +267,7 @@ function render() {
       ? formatPlatinumStatus(state.platinumChecklist)
       : (progress ? `${text("bosses")} — ${progress.killed} / ${progress.total}` : text("bosses"));
   renderChallengeTitle();
+  renderCharacterSlot(state.saveStatus);
   renderIncludeDlc();
   renderShowDeathCounter();
   renderBossListMode();
@@ -556,7 +563,6 @@ function flattenBosses(progress) {
 function renderSaveStatus(saveStatus) {
   const node = document.getElementById("saveStatus");
   if (!node) return;
-  if (document.activeElement && document.activeElement.id === "characterSlot") return;
 
   if (!saveStatus || !saveStatus.configured) {
     node.innerHTML = `<div class="badge pending">${text("wait")}</div><div>${escapeHtml(text("noSavePath"))}</div>`;
@@ -567,25 +573,12 @@ function renderSaveStatus(saveStatus) {
   const checked = saveStatus.lastCheckedAt ? new Date(saveStatus.lastCheckedAt).toLocaleTimeString("tr-TR") : "-";
   const sizeMb = saveStatus.size ? (saveStatus.size / 1024 / 1024).toFixed(2) : "-";
   const shortHash = saveStatus.hash ? saveStatus.hash.slice(0, 10) : "-";
-  const characters = (saveStatus.characters || []).filter(c => c.active);
-  const selectedSlot = Number.isInteger(state.selectedCharacterSlot) ? state.selectedCharacterSlot : "";
   const progress = state.bossProgress;
   const stateBadge = saveStatus.error || !saveStatus.exists
     ? `<span class="badge pending">${text("wait")}</span>`
     : `<span class="badge done">OK</span>`;
-  const characterOptions = characters.length
-    ? characters.map(c => {
-      const label = c.active ? `${c.slot + 1}. ${c.name}` : `${c.slot + 1}. Empty`;
-      return `<option value="${c.slot}" ${c.slot === selectedSlot ? "selected" : ""}>${escapeHtml(label)}</option>`;
-    }).join("")
-    : `<option value="">${escapeHtml(text("slotUnreadable"))}</option>`;
-
   node.innerHTML = `
     <div>${stateBadge}</div>
-    <label class="field-label" for="characterSlot">${escapeHtml(text("characterSlot"))}</label>
-    <select id="characterSlot" onchange="send({type:'selectCharacterSlot', slot:Number(this.value)})">
-      ${characterOptions}
-    </select>
     <div><strong>${escapeHtml(text("boss"))}:</strong> ${progress ? `${progress.killed} / ${progress.total}` : "-"}</div>
     <div><strong>${escapeHtml(text("path"))}:</strong> ${escapeHtml(saveStatus.path || "-")}</div>
     <div><strong>${escapeHtml(text("size"))}:</strong> ${escapeHtml(sizeMb)} MB</div>
@@ -597,6 +590,26 @@ function renderSaveStatus(saveStatus) {
   `;
 }
 
+function renderCharacterSlot(saveStatus) {
+  const node = document.getElementById("characterSlotField");
+  if (!node || document.activeElement?.id === "characterSlot") return;
+  const characters = (saveStatus?.characters || []).filter(character => character.active);
+  const selectedSlot = Number.isInteger(state.selectedCharacterSlot) ? state.selectedCharacterSlot : "";
+  const characterOptions = characters.length
+    ? characters.map(character => {
+      const label = `${character.slot + 1}. ${character.name}`;
+      return `<option value="${character.slot}" ${character.slot === selectedSlot ? "selected" : ""}>${escapeHtml(label)}</option>`;
+    }).join("")
+    : `<option value="">${escapeHtml(text("slotUnreadable"))}</option>`;
+
+  node.innerHTML = `
+    <label class="field-label" for="characterSlot">${escapeHtml(text("characterSlot"))}</label>
+    <select id="characterSlot" onchange="send({type:'selectCharacterSlot', slot:Number(this.value)})" ${characters.length ? "" : "disabled"}>
+      ${characterOptions}
+    </select>
+  `;
+}
+
 function escapeHtml(v) {
   return String(v)
     .replaceAll("&", "&amp;")
@@ -605,18 +618,6 @@ function escapeHtml(v) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
-
-document.addEventListener("keydown", (e) => {
-  if (e.target && ["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) return;
-  if (e.code === "Space") {
-    e.preventDefault();
-    send({ type: state && state.running ? "pause" : "start" });
-  }
-  if (e.code === "Enter") {
-    e.preventDefault();
-    send({ type: "nextSplit" });
-  }
-});
 
 document.getElementById("challengeTitleInput").addEventListener("change", (e) => {
   send({ type: "setTitle", title: e.target.value });

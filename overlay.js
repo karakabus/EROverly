@@ -1,10 +1,19 @@
 let state = null;
 const openRegions = new Map();
 let panelCollapsed = false;
+let previousBossContext = null;
+let previousBossUpdatedAt = null;
+let previousBossStates = new Map();
+let pendingRegionFocusKey = null;
 
 function render(s) {
-  state = s;
   const progress = s.bossProgress;
+  const latestKilledRegion = detectLatestKilledRegion(s, progress);
+  if (latestKilledRegion) {
+    openRegions.set(latestKilledRegion.key, true);
+    pendingRegionFocusKey = latestKilledRegion.key;
+  }
+  state = s;
   updatePanelCollapseState();
   document.getElementById("challengeTitle").textContent = s.title || "";
   document.getElementById("bossSummary").textContent = progress
@@ -52,11 +61,14 @@ function renderRegions(progress) {
 
   const firstIncomplete = progress.regions.findIndex(region => region.killed < region.total);
   const autoOpenIndex = firstIncomplete >= 0 ? firstIncomplete : 0;
+  let focusSection = null;
 
   progress.regions.forEach((region, index) => {
-    const isOpen = openRegions.has(index) ? openRegions.get(index) : index === autoOpenIndex;
+    const regionKey = getRegionKey(region);
+    const isOpen = openRegions.has(regionKey) ? openRegions.get(regionKey) : index === autoOpenIndex;
     const section = document.createElement("section");
     section.className = "region-section";
+    section.dataset.regionKey = regionKey;
     if (region.killed === region.total) section.classList.add("complete");
 
     const header = document.createElement("button");
@@ -69,7 +81,7 @@ function renderRegions(progress) {
       ${region.dlc ? `<span class="dlc-tag">DLC</span>` : ""}
     `;
     header.addEventListener("click", () => {
-      openRegions.set(index, !isOpen);
+      openRegions.set(regionKey, !isOpen);
       render(state);
     });
     section.appendChild(header);
@@ -97,7 +109,111 @@ function renderRegions(progress) {
     }
 
     node.appendChild(section);
+    if (regionKey === pendingRegionFocusKey) focusSection = section;
   });
+
+  if (focusSection && pendingRegionFocusKey) {
+    const focusKey = pendingRegionFocusKey;
+    requestAnimationFrame(() => {
+      if (!focusSection.isConnected || pendingRegionFocusKey !== focusKey) return;
+      const listRect = node.getBoundingClientRect();
+      const sectionRect = focusSection.getBoundingClientRect();
+      const targetTop = Math.max(0, node.scrollTop + sectionRect.top - listRect.top);
+      node.scrollTo({ top: targetTop, behavior: "smooth" });
+      pendingRegionFocusKey = null;
+    });
+  }
+}
+
+function getRegionKey(region) {
+  return `${region && region.dlc ? "dlc" : "base"}:${region?.regionName || ""}`;
+}
+
+function bossProgressContext(s, progress) {
+  const slot = Number.isInteger(s?.selectedCharacterSlot) ? s.selectedCharacterSlot : "none";
+  const mode = s?.bossListMode || "allBosses";
+  const includeDlc = s?.includeDlc === false ? "base" : "all";
+  const bossIds = (progress?.regions || [])
+    .flatMap(region => (region.bosses || []).map(boss => boss.id))
+    .join(",");
+  return `${slot}|${mode}|${includeDlc}|${bossIds}`;
+}
+
+function snapshotBossStates(progress) {
+  const snapshot = new Map();
+  for (const region of progress?.regions || []) {
+    for (const boss of region.bosses || []) snapshot.set(boss.id, Boolean(boss.killed));
+  }
+  return snapshot;
+}
+
+function detectLatestKilledRegion(s, progress) {
+  if (!progress || !Array.isArray(progress.regions) || progress.readable === false || progress.error) {
+    previousBossContext = null;
+    previousBossUpdatedAt = null;
+    previousBossStates = new Map();
+    return null;
+  }
+
+  const context = bossProgressContext(s, progress);
+  const updatedAt = Number(progress.updatedAt);
+  if (context !== previousBossContext) {
+    previousBossContext = context;
+    previousBossUpdatedAt = Number.isFinite(updatedAt) ? updatedAt : null;
+    previousBossStates = snapshotBossStates(progress);
+    return null;
+  }
+  if (
+    Number.isFinite(updatedAt) &&
+    Number.isFinite(previousBossUpdatedAt) &&
+    updatedAt <= previousBossUpdatedAt
+  ) {
+    return null;
+  }
+
+  let latest = null;
+  for (const region of progress.regions) {
+    for (const boss of region.bosses || []) {
+      if (previousBossStates.get(boss.id) === false && boss.killed === true) {
+        latest = { key: getRegionKey(region), bossId: boss.id };
+      }
+    }
+  }
+
+  previousBossStates = snapshotBossStates(progress);
+  previousBossUpdatedAt = Number.isFinite(updatedAt) ? updatedAt : previousBossUpdatedAt;
+  return latest;
+}
+
+function applyLiveBossState(message) {
+  const progress = state?.bossProgress;
+  if (!progress || !Array.isArray(progress.regions)) return false;
+
+  for (const region of progress.regions) {
+    const boss = (region.bosses || []).find(item => item.id === message.bossId);
+    if (!boss) continue;
+    const dead = Boolean(message.dead);
+    const changed = Boolean(boss.killed) !== dead;
+    boss.killed = dead;
+    region.killed = (region.bosses || []).reduce((sum, item) => sum + (item.killed ? 1 : 0), 0);
+    progress.killed = progress.regions.reduce((sum, item) => sum + (item.killed || 0), 0);
+    return changed;
+  }
+  return false;
+}
+
+function handleBossStateChange(message) {
+  if (!message || !message.bossId) return;
+  previousBossStates.set(message.bossId, Boolean(message.dead));
+  const changed = applyLiveBossState(message);
+
+  if (message.dead && message.newlyKilled) {
+    const regionKey = `${message.dlc ? "dlc" : "base"}:${message.regionName || ""}`;
+    openRegions.set(regionKey, true);
+    pendingRegionFocusKey = regionKey;
+  }
+
+  if (state?.bossProgress && (changed || pendingRegionFocusKey)) render(state);
 }
 
 function formatCharacter(s) {
@@ -148,6 +264,7 @@ function connect() {
   ws.onmessage = ev => {
     const msg = JSON.parse(ev.data);
     if (msg.type === "state") render(msg.state);
+    if (msg.type === "boss-state-changed") handleBossStateChange(msg);
   };
   ws.onclose = () => setTimeout(connect, 1000);
 }

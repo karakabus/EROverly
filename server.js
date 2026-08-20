@@ -2,8 +2,34 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { getBossProgress, getBossCatalog, getSaveStatus, startSaveWatcher } = require("./saveWatcher");
+const { execFile, spawn } = require("child_process");
+const { getBossProgress, getBossCatalog, getSaveStatus, readLiveSavePath, startSaveWatcher } = require("./saveWatcher");
 const { BASE_PLATINUM_ITEMS, MANUAL_PLATINUM_ITEM_IDS } = require("./platinumChecklist");
+const { loadMapCatalog, writeMapManifest } = require("./eldenRingMapCatalog");
+const {
+  loadBossCatalog: loadBossAutomationCatalog,
+  writeBossInspectManifest,
+  writeBossManifest
+} = require("./eldenRingBossCatalog");
+const { loadRuneCatalog, writeRuneManifest } = require("./eldenRingRuneCatalog");
+const { loadItemCatalog, searchItems, writeItemManifest } = require("./eldenRingItemCatalog");
+const {
+  loadCharacterCatalog,
+  writeCharacterInspectManifest,
+  writeCharacterManifest
+} = require("./eldenRingCharacterCatalog");
+const {
+  loadInvincibilityCatalog,
+  writeInvincibilityInspectManifest,
+  writeInvincibilityManifest
+} = require("./eldenRingInvincibilityCatalog");
+const {
+  HOTKEY_CODES,
+  normalizeHotkeyMacros,
+  readHotkeyConfig,
+  writeHotkeyConfig,
+  writeHotkeyManifest
+} = require("./eldenRingHotkeyConfig");
 
 const PORT = Number(process.env.PORT || 3210);
 const ROOT = __dirname;
@@ -12,6 +38,74 @@ const RUNTIME_DIR = path.join(ROOT, ".runtime");
 const RUNTIME_SAVE_CONFIG_PATH = path.join(RUNTIME_DIR, "save-path.json");
 const MAX_SAVE_UPLOAD_BYTES = 128 * 1024 * 1024;
 const BOSS_LIST_MODES = new Set(["allBosses", "allRemembrances", "customBosses", "platinumChecklist"]);
+const MAP_HELPER_PATH = path.join(ROOT, "tools", "elden-ring-map-helper", "bin", "EldenRingMapHelper.exe");
+const HOTKEY_HELPER_PATH = path.join(ROOT, "tools", "elden-ring-map-helper", "bin", "EldenRingHotkeyHelper.exe");
+const HOTKEY_RUNTIME_DIR = path.join(RUNTIME_DIR, "hotkeys");
+const HOTKEY_CONFIG_PATH = path.join(HOTKEY_RUNTIME_DIR, "config.json");
+const CROSSOVER_WINE_PATH = process.env.CROSSOVER_WINE_PATH || "/Applications/CrossOver.app/Contents/SharedSupport/CrossOver/bin/wine";
+const CROSSOVER_BOTTLE = process.env.ER_CROSSOVER_BOTTLE || "Elden Ring";
+const MAP_COMMAND_TIMEOUT_MS = 25000;
+const MAP_AUTOMATIONS = new Set(["mainGameMaps", "dlcMaps", "mainGameGraces", "dlcGraces"]);
+const cheatCommands = new Map();
+const liveBossStateCache = new Map();
+let hotkeyConfig = readHotkeyConfig(HOTKEY_CONFIG_PATH);
+let hotkeyProcess = null;
+let hotkeyLeaseTimer = null;
+let hotkeyRuntimePaths = null;
+let hotkeyRestartRequested = false;
+let hotkeyRuntime = {
+  state: "stopped",
+  code: null,
+  detail: null,
+  pid: null,
+  startedAt: null,
+  stoppedAt: null,
+  lastTriggeredAt: null,
+  lastTriggeredMacroId: null,
+  triggerCount: 0
+};
+let mapCatalog = null;
+let mapCatalogError = null;
+let runeCatalog = null;
+let runeCatalogError = null;
+let itemCatalog = null;
+let itemCatalogError = null;
+let bossAutomationCatalog = null;
+let bossAutomationCatalogError = null;
+let characterCatalog = null;
+let characterCatalogError = null;
+let invincibilityCatalog = null;
+let invincibilityCatalogError = null;
+try {
+  mapCatalog = loadMapCatalog(ROOT);
+} catch (error) {
+  mapCatalogError = String(error.message || error);
+}
+try {
+  runeCatalog = loadRuneCatalog(ROOT);
+} catch (error) {
+  runeCatalogError = String(error.message || error);
+}
+try {
+  itemCatalog = loadItemCatalog(ROOT);
+} catch (error) {
+  itemCatalogError = String(error.message || error);
+}
+try {
+  bossAutomationCatalog = loadBossAutomationCatalog(ROOT, getBossCatalog());
+} catch (error) {
+  bossAutomationCatalogError = String(error.message || error);
+}
+try {
+  characterCatalog = loadCharacterCatalog(ROOT);
+} catch (error) {
+  characterCatalogError = String(error.message || error);
+}
+try {
+  invincibilityCatalog = loadInvincibilityCatalog(ROOT);
+} catch (error) {
+  invincibilityCatalogError = String(error.message || error);
+}
 const REMEMBRANCE_BOSS_IDS = [
   "2:1",
   "6:14",
@@ -64,6 +158,1135 @@ function decodeHeaderValue(value) {
   } catch (_) {
     return String(value || "");
   }
+}
+
+function sendJson(res, status, value) {
+  res.writeHead(status, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Cache-Control": "no-store"
+  });
+  res.end(JSON.stringify(value));
+}
+
+function hotkeyAvailability() {
+  if (!fs.existsSync(HOTKEY_HELPER_PATH)) return { ready: false, code: "HOTKEY_HELPER_NOT_BUILT" };
+  if (!fs.existsSync(CROSSOVER_WINE_PATH)) return { ready: false, code: "CROSSOVER_NOT_FOUND" };
+  return { ready: true, code: null };
+}
+
+function hotkeyPayload() {
+  return {
+    ok: true,
+    available: hotkeyAvailability(),
+    serviceEnabled: hotkeyConfig.serviceEnabled === true,
+    service: { ...hotkeyRuntime },
+    macros: hotkeyConfig.macros,
+    supportedKeys: HOTKEY_CODES
+  };
+}
+
+function removeHotkeyRuntimeFiles() {
+  if (!hotkeyRuntimePaths) return;
+  for (const filePath of [hotkeyRuntimePaths.lease, hotkeyRuntimePaths.manifest]) {
+    try { if (fs.existsSync(filePath)) fs.unlinkSync(filePath); }
+    catch (_) {}
+  }
+  hotkeyRuntimePaths = null;
+}
+
+function clearHotkeyLeaseTimer() {
+  if (hotkeyLeaseTimer) clearInterval(hotkeyLeaseTimer);
+  hotkeyLeaseTimer = null;
+}
+
+function handleHotkeyHelperLine(line) {
+  if (!line.startsWith("EROVERLY_HOTKEY_STATE\t")) return;
+  const [, state, ...detailParts] = line.split("\t");
+  if (state === "READY") {
+    hotkeyRuntime.state = "running";
+    hotkeyRuntime.code = null;
+    hotkeyRuntime.detail = null;
+    return;
+  }
+  if (state === "TRIGGERED") {
+    hotkeyRuntime.lastTriggeredAt = Date.now();
+    hotkeyRuntime.lastTriggeredMacroId = detailParts[0] || null;
+    hotkeyRuntime.triggerCount += 1;
+    return;
+  }
+  if (state === "ERROR") {
+    hotkeyRuntime.state = "error";
+    hotkeyRuntime.code = detailParts[0] || "HOTKEY_HELPER_FAILED";
+    hotkeyRuntime.detail = detailParts.slice(1).join(" ").slice(0, 500) || null;
+  }
+}
+
+function startHotkeyService() {
+  if (hotkeyProcess || hotkeyRuntime.state === "starting") return;
+  const availability = hotkeyAvailability();
+  const enabledMacros = hotkeyConfig.macros.filter(macro => macro.enabled);
+  if (!availability.ready || !enabledMacros.length) {
+    hotkeyRuntime.state = "error";
+    hotkeyRuntime.code = availability.code || "NO_ENABLED_HOTKEY_MACROS";
+    hotkeyRuntime.detail = null;
+    return;
+  }
+
+  const runtimeId = crypto.randomUUID();
+  const paths = {
+    manifest: path.join(HOTKEY_RUNTIME_DIR, `${runtimeId}.tsv`),
+    lease: path.join(HOTKEY_RUNTIME_DIR, `${runtimeId}.lease`)
+  };
+  try {
+    writeHotkeyManifest(paths.manifest, hotkeyConfig.macros);
+    fs.writeFileSync(paths.lease, String(Date.now()), "utf8");
+  } catch (error) {
+    hotkeyRuntime.state = "error";
+    hotkeyRuntime.code = "HOTKEY_CONFIG_FAILED";
+    hotkeyRuntime.detail = String(error.message || error).slice(0, 500);
+    return;
+  }
+
+  hotkeyRuntimePaths = paths;
+  hotkeyRuntime = {
+    ...hotkeyRuntime,
+    state: "starting",
+    code: null,
+    detail: null,
+    pid: null,
+    startedAt: Date.now(),
+    stoppedAt: null
+  };
+  const child = spawn(
+    CROSSOVER_WINE_PATH,
+    ["--bottle", CROSSOVER_BOTTLE, HOTKEY_HELPER_PATH, "--watch", toWinePath(paths.manifest), toWinePath(paths.lease)],
+    { stdio: ["ignore", "pipe", "pipe"] }
+  );
+  hotkeyProcess = child;
+  hotkeyRuntime.pid = child.pid || null;
+  let stdoutBuffer = "";
+  let stderrBuffer = "";
+  child.stdout.on("data", chunk => {
+    stdoutBuffer += String(chunk);
+    const lines = stdoutBuffer.split(/\r?\n/);
+    stdoutBuffer = lines.pop() || "";
+    for (const line of lines) handleHotkeyHelperLine(line);
+  });
+  child.stderr.on("data", chunk => {
+    stderrBuffer = `${stderrBuffer}${String(chunk)}`.slice(-2000);
+  });
+  child.on("error", error => {
+    hotkeyRuntime.state = "error";
+    hotkeyRuntime.code = "HOTKEY_HELPER_START_FAILED";
+    hotkeyRuntime.detail = String(error.message || error).slice(0, 500);
+  });
+  child.on("exit", (exitCode, signal) => {
+    if (stdoutBuffer) handleHotkeyHelperLine(stdoutBuffer);
+    const restart = hotkeyRestartRequested && hotkeyConfig.serviceEnabled;
+    hotkeyRestartRequested = false;
+    const wasStopping = hotkeyRuntime.state === "stopping";
+    hotkeyProcess = null;
+    clearHotkeyLeaseTimer();
+    removeHotkeyRuntimeFiles();
+    hotkeyRuntime.pid = null;
+    hotkeyRuntime.stoppedAt = Date.now();
+    if (restart) {
+      hotkeyRuntime.state = "stopped";
+      setTimeout(startHotkeyService, 100);
+      return;
+    }
+    if (!hotkeyConfig.serviceEnabled || wasStopping) {
+      hotkeyRuntime.state = "stopped";
+      hotkeyRuntime.code = null;
+      hotkeyRuntime.detail = null;
+      return;
+    }
+    if (hotkeyRuntime.state !== "error") {
+      hotkeyRuntime.state = "error";
+      hotkeyRuntime.code = "HOTKEY_HELPER_EXITED";
+      hotkeyRuntime.detail = `${exitCode ?? ""}${signal ? ` ${signal}` : ""}${stderrBuffer ? ` ${stderrBuffer.trim()}` : ""}`.trim().slice(0, 500) || null;
+    }
+  });
+
+  hotkeyLeaseTimer = setInterval(() => {
+    try {
+      if (hotkeyRuntimePaths?.lease) {
+        const now = new Date();
+        fs.utimesSync(hotkeyRuntimePaths.lease, now, now);
+      }
+    } catch (error) {
+      hotkeyRuntime.state = "error";
+      hotkeyRuntime.code = "HOTKEY_LEASE_FAILED";
+      hotkeyRuntime.detail = String(error.message || error).slice(0, 500);
+      clearHotkeyLeaseTimer();
+      if (hotkeyRuntimePaths?.lease) {
+        try { fs.unlinkSync(hotkeyRuntimePaths.lease); }
+        catch (_) {}
+      }
+    }
+  }, 1000);
+}
+
+function stopHotkeyService(restart) {
+  hotkeyRestartRequested = restart === true;
+  clearHotkeyLeaseTimer();
+  if (hotkeyRuntimePaths?.lease) {
+    try { fs.unlinkSync(hotkeyRuntimePaths.lease); }
+    catch (_) {}
+  }
+  if (hotkeyProcess) {
+    hotkeyRuntime.state = "stopping";
+    return;
+  }
+  removeHotkeyRuntimeFiles();
+  hotkeyRuntime.state = "stopped";
+  hotkeyRuntime.pid = null;
+  hotkeyRuntime.stoppedAt = Date.now();
+  if (hotkeyRestartRequested && hotkeyConfig.serviceEnabled) {
+    hotkeyRestartRequested = false;
+    startHotkeyService();
+  }
+}
+
+function readHotkeyConfigRequest(req, res) {
+  let body = "";
+  let rejected = false;
+  req.on("data", chunk => {
+    if (rejected) return;
+    body += chunk;
+    if (Buffer.byteLength(body, "utf8") > 64 * 1024) {
+      rejected = true;
+      sendJson(res, 413, { ok: false, code: "REQUEST_TOO_LARGE" });
+    }
+  });
+  req.on("end", () => {
+    if (rejected) return;
+    try {
+      const payload = JSON.parse(body || "{}");
+      const macros = normalizeHotkeyMacros(payload.macros);
+      const hasEnabled = macros.some(macro => macro.enabled);
+      const wasRunning = Boolean(hotkeyProcess);
+      hotkeyConfig = writeHotkeyConfig(HOTKEY_CONFIG_PATH, {
+        serviceEnabled: hotkeyConfig.serviceEnabled && hasEnabled,
+        macros
+      });
+      if (wasRunning) stopHotkeyService(hotkeyConfig.serviceEnabled);
+      else if (hotkeyConfig.serviceEnabled) startHotkeyService();
+      sendJson(res, 200, hotkeyPayload());
+    } catch (error) {
+      const message = String(error.message || error);
+      sendJson(res, 400, { ok: false, code: message.startsWith("HOTKEY_") || message.startsWith("INVALID_HOTKEY_") ? message : "INVALID_HOTKEY_CONFIG" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
+}
+
+function readHotkeyServiceRequest(req, res) {
+  let body = "";
+  req.on("data", chunk => body += chunk);
+  req.on("end", () => {
+    try {
+      const payload = JSON.parse(body || "{}");
+      if (typeof payload.enabled !== "boolean") {
+        sendJson(res, 400, { ok: false, code: "INVALID_HOTKEY_SERVICE_STATE" });
+        return;
+      }
+      if (payload.enabled && !hotkeyConfig.macros.some(macro => macro.enabled)) {
+        sendJson(res, 400, { ok: false, code: "NO_ENABLED_HOTKEY_MACROS" });
+        return;
+      }
+      const availability = hotkeyAvailability();
+      if (payload.enabled && !availability.ready) {
+        sendJson(res, 503, { ok: false, code: availability.code });
+        return;
+      }
+      hotkeyConfig = writeHotkeyConfig(HOTKEY_CONFIG_PATH, {
+        serviceEnabled: payload.enabled,
+        macros: hotkeyConfig.macros
+      });
+      if (payload.enabled) startHotkeyService();
+      else stopHotkeyService(false);
+      sendJson(res, 200, hotkeyPayload());
+    } catch (_) {
+      sendJson(res, 400, { ok: false, code: "INVALID_JSON" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
+}
+
+function cleanupCheatCommands() {
+  const cutoff = Date.now() - 10 * 60 * 1000;
+  for (const [id, command] of cheatCommands) {
+    if (command.createdAt < cutoff) cheatCommands.delete(id);
+  }
+}
+
+function serializeCheatCommand(command) {
+  return {
+    id: command.id,
+    state: command.state,
+    actions: command.actions,
+    errorCode: command.errorCode || null,
+    resultCode: command.resultCode || null,
+    detail: command.detail || null,
+    amount: command.amount || null,
+    quantity: command.quantity || null,
+    bossChanges: command.bossChanges || null,
+    characterStats: command.characterStats || null,
+    invincibility: command.invincibility || null,
+    item: command.item
+      ? {
+          key: command.item.key,
+          category: command.item.category,
+          baseId: command.item.baseId,
+          name: command.item.name
+        }
+      : null,
+    backupRequested: command.backupRequested === true,
+    backup: command.backup || null,
+    createdAt: command.createdAt,
+    startedAt: command.startedAt || null,
+    finishedAt: command.finishedAt || null
+  };
+}
+
+function mapHelperStatus() {
+  let code = null;
+  if (!fs.existsSync(MAP_HELPER_PATH)) code = "HELPER_NOT_BUILT";
+  else if (!fs.existsSync(CROSSOVER_WINE_PATH)) code = "CROSSOVER_NOT_FOUND";
+  return {
+    ok: true,
+    connected: !code,
+    mode: "direct-memory",
+    code,
+    tableName: mapCatalog?.tableName || null,
+    tableVersion: mapCatalog?.tableVersion || null,
+    tablePath: mapCatalog?.tablePath || null,
+    actions: mapCatalog
+      ? Object.fromEntries(Object.entries(mapCatalog.actions).map(([action, operations]) => [action, operations.length]))
+      : {},
+    features: {
+      maps: { ready: !mapCatalogError, code: mapCatalogError ? "CT_MAP_CATALOG_INVALID" : null },
+      runes: {
+        ready: !runeCatalogError,
+        code: runeCatalogError ? "CT_RUNE_CATALOG_INVALID" : null,
+        sourceRecordId: runeCatalog?.sourceRecordId || null,
+        maxRunes: runeCatalog?.maxRunes || null
+      },
+      items: {
+        ready: !itemCatalogError,
+        code: itemCatalogError ? "CT_ITEM_CATALOG_INVALID" : null,
+        sourceRecordIds: itemCatalog?.sourceRecordIds || [],
+        count: itemCatalog?.items.length || 0,
+        maxQuantity: itemCatalog?.maxQuantity || null
+      },
+      bosses: {
+        ready: !bossAutomationCatalogError,
+        code: bossAutomationCatalogError ? "CT_BOSS_CATALOG_INVALID" : null,
+        sourceGroupIds: [1337304929, 1337314897],
+        count: bossAutomationCatalog?.bosses.length || 0,
+        matchedSourceCount: bossAutomationCatalog?.matchedSourceCount || 0
+      },
+      characterStats: {
+        ready: !characterCatalogError,
+        code: characterCatalogError ? "CT_CHARACTER_CATALOG_INVALID" : null,
+        sourceGroupId: characterCatalog?.sourceGroupId || null,
+        count: characterCatalog?.fields.length || 0
+      },
+      invincibility: {
+        ready: !invincibilityCatalogError,
+        code: invincibilityCatalogError ? "CT_INVINCIBILITY_CATALOG_INVALID" : null,
+        sourceRecordIds: invincibilityCatalog?.fields.map(field => field.sourceRecordId) || [],
+        count: invincibilityCatalog?.fields.length || 0
+      },
+      hotkeys: {
+        ready: fs.existsSync(HOTKEY_HELPER_PATH),
+        code: fs.existsSync(HOTKEY_HELPER_PATH) ? null : "HOTKEY_HELPER_NOT_BUILT"
+      }
+    },
+    detail: mapCatalogError || runeCatalogError || itemCatalogError || bossAutomationCatalogError || characterCatalogError || invincibilityCatalogError
+  };
+}
+
+function toWinePath(filePath) {
+  return `Z:${path.resolve(filePath).replaceAll("/", "\\")}`;
+}
+
+function parseMapHelperOutput(stdout) {
+  const line = String(stdout || "")
+    .split(/\r?\n/)
+    .find(value => value.startsWith("EROVERLY_RESULT\t"));
+  if (!line) return null;
+  const [, state, code, ...detail] = line.split("\t");
+  return { state, code, detail: detail.join(" ").slice(0, 500) };
+}
+
+function createPreCommandSaveBackup(command) {
+  const savePath = readLiveSavePath();
+  if (!savePath || !fs.existsSync(savePath)) {
+    throw new Error("SAVE_BACKUP_NOT_CONFIGURED");
+  }
+
+  const before = fs.statSync(savePath);
+  if (!before.isFile() || before.size <= 0) throw new Error("SAVE_BACKUP_SOURCE_INVALID");
+  const timestamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+  const extension = path.extname(savePath).toLowerCase();
+  const includesMaps = command.actions.some(action => action.endsWith("Maps"));
+  const includesGraces = command.actions.some(action => action.endsWith("Graces"));
+  const commandLabel = command.actions.includes("addRunes")
+    ? "runes"
+    : command.actions.includes("addItem")
+      ? "item"
+      : command.actions.includes("updateBosses")
+        ? "bosses"
+        : command.actions.includes("updateCharacterStats")
+          ? "character-stats"
+          : includesMaps && includesGraces
+            ? "maps-graces"
+            : includesGraces
+              ? "graces"
+              : "maps";
+  const backupPath = path.join(
+    RUNTIME_DIR,
+    "save-backups",
+    `${path.basename(savePath, extension)}.pre-${commandLabel}-${timestamp}-${command.id.slice(0, 8)}${extension}`
+  );
+  fs.mkdirSync(path.dirname(backupPath), { recursive: true });
+  fs.copyFileSync(savePath, backupPath, fs.constants.COPYFILE_EXCL);
+
+  const after = fs.statSync(savePath);
+  const backup = fs.statSync(backupPath);
+  if (before.size !== after.size || before.mtimeMs !== after.mtimeMs || backup.size !== before.size) {
+    fs.unlinkSync(backupPath);
+    throw new Error("SAVE_CHANGED_DURING_BACKUP");
+  }
+
+  const sourceHash = crypto.createHash("sha256").update(fs.readFileSync(savePath)).digest("hex");
+  const backupHash = crypto.createHash("sha256").update(fs.readFileSync(backupPath)).digest("hex");
+  if (sourceHash !== backupHash) {
+    fs.unlinkSync(backupPath);
+    throw new Error("SAVE_BACKUP_HASH_MISMATCH");
+  }
+
+  command.backup = {
+    path: backupPath,
+    size: backup.size,
+    sha256: backupHash
+  };
+}
+
+function bossListWithStates(states, source, readable, warning) {
+  return {
+    ok: true,
+    readable,
+    source,
+    warning: warning || null,
+    updatedAt: Date.now(),
+    bosses: (bossAutomationCatalog?.bosses || []).map(boss => ({
+      id: boss.id,
+      name: boss.name,
+      place: boss.place,
+      regionName: boss.regionName,
+      dlc: boss.dlc,
+      dead: states.has(boss.id) ? states.get(boss.id) : null,
+      writable: boss.writable,
+      sourceRecordId: boss.sourceRecordId,
+      recursiveFlagCount: boss.operations.length
+    }))
+  };
+}
+
+function saveBossStateFallback(warning) {
+  const appState = readState();
+  const selected = resolveSelectedCharacter(appState, getSaveStatus());
+  const progress = getBossProgress(selected.selectedCharacterSlot);
+  const states = new Map();
+  if (progress.readable) {
+    for (const region of progress.regions || []) {
+      for (const boss of region.bosses || []) states.set(boss.id, Boolean(boss.killed));
+    }
+  }
+  return bossListWithStates(states, "save-fallback", Boolean(progress.readable), warning || progress.error);
+}
+
+function parseBossInspectionOutput(stdout) {
+  const states = new Map();
+  for (const line of String(stdout || "").split(/\r?\n/)) {
+    if (!line.startsWith("EROVERLY_BOSS_STATE\t")) continue;
+    const [, id, value] = line.split("\t");
+    if (id && (value === "0" || value === "1")) states.set(id, value === "1");
+  }
+  return states;
+}
+
+function sendBossInspection(res) {
+  if (bossAutomationCatalogError || !bossAutomationCatalog) {
+    sendJson(res, 503, { ok: false, code: "CT_BOSS_CATALOG_INVALID", detail: bossAutomationCatalogError });
+    return;
+  }
+  const helperStatus = mapHelperStatus();
+  if (!helperStatus.connected || !helperStatus.features.bosses.ready) {
+    sendJson(res, 200, saveBossStateFallback(helperStatus.code || helperStatus.features.bosses.code));
+    return;
+  }
+  if ([...cheatCommands.values()].some(command => command.state === "running")) {
+    sendJson(res, 200, saveBossStateFallback("COMMAND_BUSY"));
+    return;
+  }
+
+  const inspectionId = crypto.randomUUID();
+  const manifestPath = path.join(RUNTIME_DIR, "cheat-commands", `${inspectionId}.tsv`);
+  try {
+    writeBossInspectManifest(bossAutomationCatalog, manifestPath);
+  } catch (error) {
+    sendJson(res, 503, { ok: false, code: "MANIFEST_FAILED", detail: String(error.message || error).slice(0, 500) });
+    return;
+  }
+
+  execFile(
+    CROSSOVER_WINE_PATH,
+    ["--bottle", CROSSOVER_BOTTLE, MAP_HELPER_PATH, "--inspect", toWinePath(manifestPath)],
+    { timeout: MAP_COMMAND_TIMEOUT_MS, maxBuffer: 2 * 1024 * 1024 },
+    (error, stdout, stderr) => {
+      fs.unlink(manifestPath, () => {});
+      const result = parseMapHelperOutput(stdout);
+      const states = parseBossInspectionOutput(stdout);
+      if (result?.state === "OK" && states.size === bossAutomationCatalog.bosses.filter(boss => boss.writable).length) {
+        liveBossStateCache.clear();
+        for (const [id, dead] of states) liveBossStateCache.set(id, dead);
+        sendJson(res, 200, bossListWithStates(states, "live-memory", true, null));
+        return;
+      }
+      const warning = result?.code || (error?.killed ? "HELPER_TIMEOUT" : "HELPER_START_FAILED");
+      const fallback = saveBossStateFallback(warning);
+      if (!fallback.readable && stderr) fallback.detail = String(stderr).slice(0, 500);
+      sendJson(res, 200, fallback);
+    }
+  );
+}
+
+function readBossAutomationRequest(req, res) {
+  let body = "";
+  let rejected = false;
+  req.on("data", chunk => {
+    if (rejected) return;
+    body += chunk;
+    if (Buffer.byteLength(body, "utf8") > 64 * 1024) {
+      rejected = true;
+      sendJson(res, 413, { ok: false, code: "REQUEST_TOO_LARGE" });
+    }
+  });
+  req.on("end", () => {
+    if (rejected) return;
+    try {
+      const payload = JSON.parse(body || "{}");
+      if (bossAutomationCatalogError || !bossAutomationCatalog) {
+        sendJson(res, 503, { ok: false, code: "CT_BOSS_CATALOG_INVALID", detail: bossAutomationCatalogError });
+        return;
+      }
+      const known = new Map(bossAutomationCatalog.bosses.map(boss => [boss.id, boss]));
+      const changes = Array.isArray(payload.changes) ? payload.changes : [];
+      const normalized = [];
+      const seen = new Set();
+      for (const change of changes) {
+        const id = typeof change?.id === "string" ? change.id : "";
+        const targetState = change?.state;
+        const boss = known.get(id);
+        if (!boss || !boss.writable || seen.has(id) || (targetState !== "alive" && targetState !== "dead")) {
+          sendJson(res, 400, { ok: false, code: "INVALID_BOSS_CHANGE" });
+          return;
+        }
+        seen.add(id);
+        normalized.push({ id, state: targetState });
+      }
+      if (!normalized.length || normalized.length > bossAutomationCatalog.bosses.length) {
+        sendJson(res, 400, { ok: false, code: "NO_BOSS_CHANGES" });
+        return;
+      }
+
+      const helperStatus = mapHelperStatus();
+      if (!helperStatus.connected) {
+        sendJson(res, 503, { ok: false, code: helperStatus.code, detail: helperStatus.detail });
+        return;
+      }
+      if (!helperStatus.features.bosses.ready) {
+        sendJson(res, 503, { ok: false, code: helperStatus.features.bosses.code, detail: bossAutomationCatalogError });
+        return;
+      }
+      if ([...cheatCommands.values()].some(command => command.state === "running")) {
+        sendJson(res, 409, { ok: false, code: "COMMAND_BUSY" });
+        return;
+      }
+
+      cleanupCheatCommands();
+      const command = {
+        id: crypto.randomUUID(),
+        state: "created",
+        actions: ["updateBosses"],
+        bossChanges: normalized,
+        bossPreviousStates: Object.fromEntries(normalized.map(change => [
+          change.id,
+          liveBossStateCache.has(change.id) ? liveBossStateCache.get(change.id) : null
+        ])),
+        backupRequested: payload.backup === true,
+        createdAt: Date.now()
+      };
+      cheatCommands.set(command.id, command);
+      runDirectCommand(command, manifestPath => writeBossManifest(bossAutomationCatalog, normalized, manifestPath));
+      sendJson(res, 202, { ok: true, command: serializeCheatCommand(command) });
+    } catch (_) {
+      sendJson(res, 400, { ok: false, code: "INVALID_JSON" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
+}
+
+function characterStatsPayload(values, readable, warning) {
+  return {
+    ok: true,
+    readable,
+    source: readable ? "live-memory" : null,
+    warning: warning || null,
+    updatedAt: Date.now(),
+    fields: (characterCatalog?.fields || []).map(field => ({
+      key: field.key,
+      name: field.name,
+      min: field.min,
+      max: field.max,
+      sourceRecordId: field.sourceRecordId,
+      value: values.has(field.key) ? values.get(field.key) : null
+    }))
+  };
+}
+
+function parseCharacterInspectionOutput(stdout) {
+  const values = new Map();
+  for (const line of String(stdout || "").split(/\r?\n/)) {
+    if (!line.startsWith("EROVERLY_CHARACTER_STAT\t")) continue;
+    const [, key, rawValue] = line.split("\t");
+    const value = Number(rawValue);
+    if (key && Number.isSafeInteger(value)) values.set(key, value);
+  }
+  return values;
+}
+
+function sendCharacterStatsInspection(res) {
+  if (characterCatalogError || !characterCatalog) {
+    sendJson(res, 503, { ok: false, code: "CT_CHARACTER_CATALOG_INVALID", detail: characterCatalogError });
+    return;
+  }
+  const helperStatus = mapHelperStatus();
+  if (!helperStatus.connected || !helperStatus.features.characterStats.ready) {
+    sendJson(res, 200, characterStatsPayload(new Map(), false, helperStatus.code || helperStatus.features.characterStats.code));
+    return;
+  }
+  if ([...cheatCommands.values()].some(command => command.state === "running")) {
+    sendJson(res, 200, characterStatsPayload(new Map(), false, "COMMAND_BUSY"));
+    return;
+  }
+
+  const inspectionId = crypto.randomUUID();
+  const manifestPath = path.join(RUNTIME_DIR, "cheat-commands", `${inspectionId}.tsv`);
+  try {
+    writeCharacterInspectManifest(characterCatalog, manifestPath);
+  } catch (error) {
+    sendJson(res, 503, { ok: false, code: "MANIFEST_FAILED", detail: String(error.message || error).slice(0, 500) });
+    return;
+  }
+
+  execFile(
+    CROSSOVER_WINE_PATH,
+    ["--bottle", CROSSOVER_BOTTLE, MAP_HELPER_PATH, "--inspect", toWinePath(manifestPath)],
+    { timeout: MAP_COMMAND_TIMEOUT_MS, maxBuffer: 1024 * 1024 },
+    (error, stdout, stderr) => {
+      fs.unlink(manifestPath, () => {});
+      const result = parseMapHelperOutput(stdout);
+      const values = parseCharacterInspectionOutput(stdout);
+      if (result?.state === "OK" && values.size === characterCatalog.fields.length) {
+        sendJson(res, 200, characterStatsPayload(values, true, null));
+        return;
+      }
+      const warning = result?.code || (error?.killed ? "HELPER_TIMEOUT" : "HELPER_START_FAILED");
+      const payload = characterStatsPayload(new Map(), false, warning);
+      if (stderr) payload.detail = String(stderr).slice(0, 500);
+      sendJson(res, 200, payload);
+    }
+  );
+}
+
+function readCharacterStatsAutomationRequest(req, res) {
+  let body = "";
+  let rejected = false;
+  req.on("data", chunk => {
+    if (rejected) return;
+    body += chunk;
+    if (Buffer.byteLength(body, "utf8") > 16 * 1024) {
+      rejected = true;
+      sendJson(res, 413, { ok: false, code: "REQUEST_TOO_LARGE" });
+    }
+  });
+  req.on("end", () => {
+    if (rejected) return;
+    try {
+      const payload = JSON.parse(body || "{}");
+      if (characterCatalogError || !characterCatalog) {
+        sendJson(res, 503, { ok: false, code: "CT_CHARACTER_CATALOG_INVALID", detail: characterCatalogError });
+        return;
+      }
+      if (!payload.values || typeof payload.values !== "object" || Array.isArray(payload.values)) {
+        sendJson(res, 400, { ok: false, code: "NO_CHARACTER_STAT_CHANGES" });
+        return;
+      }
+      const normalized = {};
+      for (const [key, rawValue] of Object.entries(payload.values)) {
+        const field = characterCatalog.byKey.get(key);
+        const value = Number(rawValue);
+        if (!field || !Number.isSafeInteger(value) || value < field.min || value > field.max) {
+          sendJson(res, 400, { ok: false, code: "INVALID_CHARACTER_STAT", field: key });
+          return;
+        }
+        normalized[key] = value;
+      }
+      if (!Object.keys(normalized).length || Object.keys(normalized).length > characterCatalog.fields.length) {
+        sendJson(res, 400, { ok: false, code: "NO_CHARACTER_STAT_CHANGES" });
+        return;
+      }
+
+      const helperStatus = mapHelperStatus();
+      if (!helperStatus.connected) {
+        sendJson(res, 503, { ok: false, code: helperStatus.code, detail: helperStatus.detail });
+        return;
+      }
+      if (!helperStatus.features.characterStats.ready) {
+        sendJson(res, 503, { ok: false, code: helperStatus.features.characterStats.code, detail: characterCatalogError });
+        return;
+      }
+      if ([...cheatCommands.values()].some(command => command.state === "running")) {
+        sendJson(res, 409, { ok: false, code: "COMMAND_BUSY" });
+        return;
+      }
+
+      cleanupCheatCommands();
+      const command = {
+        id: crypto.randomUUID(),
+        state: "created",
+        actions: ["updateCharacterStats"],
+        characterStats: normalized,
+        backupRequested: payload.backup === true,
+        createdAt: Date.now()
+      };
+      cheatCommands.set(command.id, command);
+      runDirectCommand(command, manifestPath => writeCharacterManifest(characterCatalog, normalized, manifestPath));
+      sendJson(res, 202, { ok: true, command: serializeCheatCommand(command) });
+    } catch (_) {
+      sendJson(res, 400, { ok: false, code: "INVALID_JSON" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
+}
+
+function invincibilityPayload(values, readable, warning) {
+  return {
+    ok: true,
+    readable,
+    source: readable ? "live-memory" : null,
+    warning: warning || null,
+    updatedAt: Date.now(),
+    fields: (invincibilityCatalog?.fields || []).map(field => ({
+      key: field.key,
+      sourceRecordId: field.sourceRecordId,
+      enabled: values.has(field.key) ? values.get(field.key) : null
+    }))
+  };
+}
+
+function parseInvincibilityInspectionOutput(stdout) {
+  const values = new Map();
+  for (const line of String(stdout || "").split(/\r?\n/)) {
+    if (!line.startsWith("EROVERLY_INVINCIBILITY_STATE\t")) continue;
+    const [, key, rawValue] = line.split("\t");
+    if (key && (rawValue === "0" || rawValue === "1")) values.set(key, rawValue === "1");
+  }
+  return values;
+}
+
+function sendInvincibilityInspection(res) {
+  if (invincibilityCatalogError || !invincibilityCatalog) {
+    sendJson(res, 503, { ok: false, code: "CT_INVINCIBILITY_CATALOG_INVALID", detail: invincibilityCatalogError });
+    return;
+  }
+  const helperStatus = mapHelperStatus();
+  if (!helperStatus.connected || !helperStatus.features.invincibility.ready) {
+    sendJson(res, 200, invincibilityPayload(new Map(), false, helperStatus.code || helperStatus.features.invincibility.code));
+    return;
+  }
+  if ([...cheatCommands.values()].some(command => command.state === "running")) {
+    sendJson(res, 200, invincibilityPayload(new Map(), false, "COMMAND_BUSY"));
+    return;
+  }
+
+  const inspectionId = crypto.randomUUID();
+  const manifestPath = path.join(RUNTIME_DIR, "cheat-commands", `${inspectionId}.tsv`);
+  try {
+    writeInvincibilityInspectManifest(invincibilityCatalog, manifestPath);
+  } catch (error) {
+    sendJson(res, 503, { ok: false, code: "MANIFEST_FAILED", detail: String(error.message || error).slice(0, 500) });
+    return;
+  }
+
+  execFile(
+    CROSSOVER_WINE_PATH,
+    ["--bottle", CROSSOVER_BOTTLE, MAP_HELPER_PATH, "--inspect", toWinePath(manifestPath)],
+    { timeout: MAP_COMMAND_TIMEOUT_MS, maxBuffer: 1024 * 1024 },
+    (error, stdout, stderr) => {
+      fs.unlink(manifestPath, () => {});
+      const result = parseMapHelperOutput(stdout);
+      const values = parseInvincibilityInspectionOutput(stdout);
+      if (result?.state === "OK" && values.size === invincibilityCatalog.fields.length) {
+        sendJson(res, 200, invincibilityPayload(values, true, null));
+        return;
+      }
+      const warning = result?.code || (error?.killed ? "HELPER_TIMEOUT" : "HELPER_START_FAILED");
+      const payload = invincibilityPayload(new Map(), false, warning);
+      if (stderr) payload.detail = String(stderr).slice(0, 500);
+      sendJson(res, 200, payload);
+    }
+  );
+}
+
+function readInvincibilityAutomationRequest(req, res) {
+  let body = "";
+  let rejected = false;
+  req.on("data", chunk => {
+    if (rejected) return;
+    body += chunk;
+    if (Buffer.byteLength(body, "utf8") > 4 * 1024) {
+      rejected = true;
+      sendJson(res, 413, { ok: false, code: "REQUEST_TOO_LARGE" });
+    }
+  });
+  req.on("end", () => {
+    if (rejected) return;
+    try {
+      const payload = JSON.parse(body || "{}");
+      if (invincibilityCatalogError || !invincibilityCatalog) {
+        sendJson(res, 503, { ok: false, code: "CT_INVINCIBILITY_CATALOG_INVALID", detail: invincibilityCatalogError });
+        return;
+      }
+      if (!payload.values || typeof payload.values !== "object" || Array.isArray(payload.values)) {
+        sendJson(res, 400, { ok: false, code: "NO_INVINCIBILITY_CHANGES" });
+        return;
+      }
+      const normalized = {};
+      for (const [key, value] of Object.entries(payload.values)) {
+        if (!invincibilityCatalog.byKey.has(key) || typeof value !== "boolean") {
+          sendJson(res, 400, { ok: false, code: "INVALID_INVINCIBILITY_STATE", field: key });
+          return;
+        }
+        normalized[key] = value;
+      }
+      if (!Object.keys(normalized).length || Object.keys(normalized).length > invincibilityCatalog.fields.length) {
+        sendJson(res, 400, { ok: false, code: "NO_INVINCIBILITY_CHANGES" });
+        return;
+      }
+
+      const helperStatus = mapHelperStatus();
+      if (!helperStatus.connected) {
+        sendJson(res, 503, { ok: false, code: helperStatus.code, detail: helperStatus.detail });
+        return;
+      }
+      if (!helperStatus.features.invincibility.ready) {
+        sendJson(res, 503, { ok: false, code: helperStatus.features.invincibility.code, detail: invincibilityCatalogError });
+        return;
+      }
+      if ([...cheatCommands.values()].some(command => command.state === "running")) {
+        sendJson(res, 409, { ok: false, code: "COMMAND_BUSY" });
+        return;
+      }
+
+      cleanupCheatCommands();
+      const command = {
+        id: crypto.randomUUID(),
+        state: "created",
+        actions: ["updateInvincibility"],
+        invincibility: normalized,
+        backupRequested: false,
+        createdAt: Date.now()
+      };
+      cheatCommands.set(command.id, command);
+      runDirectCommand(command, manifestPath => writeInvincibilityManifest(invincibilityCatalog, normalized, manifestPath));
+      sendJson(res, 202, { ok: true, command: serializeCheatCommand(command) });
+    } catch (_) {
+      sendJson(res, 400, { ok: false, code: "INVALID_JSON" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
+}
+
+function runDirectCommand(command, writeManifest) {
+  const manifestPath = path.join(RUNTIME_DIR, "cheat-commands", `${command.id}.tsv`);
+  try {
+    if (command.backupRequested) createPreCommandSaveBackup(command);
+    writeManifest(manifestPath);
+  } catch (error) {
+    command.state = "failed";
+    command.errorCode = String(error.message || error).startsWith("SAVE_") ? String(error.message || error) : "MANIFEST_FAILED";
+    command.detail = String(error.message || error).slice(0, 500);
+    command.finishedAt = Date.now();
+    return;
+  }
+
+  command.state = "running";
+  command.startedAt = Date.now();
+  execFile(
+    CROSSOVER_WINE_PATH,
+    ["--bottle", CROSSOVER_BOTTLE, MAP_HELPER_PATH, "--apply", toWinePath(manifestPath)],
+    { timeout: MAP_COMMAND_TIMEOUT_MS, maxBuffer: 1024 * 1024 },
+    (error, stdout, stderr) => {
+      fs.unlink(manifestPath, () => {});
+      const result = parseMapHelperOutput(stdout);
+      command.finishedAt = Date.now();
+
+      if (result?.state === "OK") {
+        command.state = "succeeded";
+        command.resultCode = result.code;
+        command.detail = result.detail;
+        if (command.actions.includes("updateBosses")) publishBossStateChanges(command);
+        return;
+      }
+
+      command.state = "failed";
+      command.errorCode = result?.code || (error?.killed ? "HELPER_TIMEOUT" : "HELPER_START_FAILED");
+      command.detail = (result?.detail || String(stderr || error?.message || "Unknown helper failure")).slice(0, 500);
+    }
+  );
+}
+
+function publishBossStateChanges(command) {
+  for (const change of command.bossChanges || []) {
+    const boss = bossAutomationCatalog?.bosses.find(item => item.id === change.id);
+    if (!boss) continue;
+    const previous = command.bossPreviousStates?.[change.id];
+    const dead = change.state === "dead";
+    liveBossStateCache.set(change.id, dead);
+    broadcast({
+      type: "boss-state-changed",
+      bossId: boss.id,
+      regionName: boss.regionName,
+      dlc: boss.dlc,
+      dead,
+      newlyKilled: dead && previous !== true,
+      changedAt: Date.now()
+    });
+  }
+}
+
+function readCheatAutomationRequest(req, res) {
+  let body = "";
+  let rejected = false;
+  req.on("data", chunk => {
+    if (rejected) return;
+    body += chunk;
+    if (Buffer.byteLength(body, "utf8") > 16 * 1024) {
+      rejected = true;
+      sendJson(res, 413, { ok: false, code: "REQUEST_TOO_LARGE" });
+    }
+  });
+  req.on("end", () => {
+    if (rejected) return;
+    try {
+      const payload = JSON.parse(body || "{}");
+      const actions = Array.isArray(payload.actions)
+        ? [...new Set(payload.actions.filter(action => typeof action === "string"))]
+        : [];
+      if (!actions.length) {
+        sendJson(res, 400, { ok: false, code: "NO_ACTIONS" });
+        return;
+      }
+      if (actions.some(action => !MAP_AUTOMATIONS.has(action))) {
+        sendJson(res, 400, { ok: false, code: "UNKNOWN_ACTION" });
+        return;
+      }
+      const helperStatus = mapHelperStatus();
+      if (!helperStatus.connected) {
+        sendJson(res, 503, { ok: false, code: helperStatus.code, detail: helperStatus.detail });
+        return;
+      }
+      if (!helperStatus.features.maps.ready) {
+        sendJson(res, 503, { ok: false, code: helperStatus.features.maps.code, detail: mapCatalogError });
+        return;
+      }
+      if ([...cheatCommands.values()].some(command => command.state === "running")) {
+        sendJson(res, 409, { ok: false, code: "COMMAND_BUSY" });
+        return;
+      }
+
+      cleanupCheatCommands();
+      const command = {
+        id: crypto.randomUUID(),
+        state: "created",
+        actions,
+        backupRequested: payload.backup === true,
+        createdAt: Date.now()
+      };
+      cheatCommands.set(command.id, command);
+      runDirectCommand(command, manifestPath => writeMapManifest(mapCatalog, command.actions, manifestPath));
+      sendJson(res, 202, { ok: true, command: serializeCheatCommand(command) });
+    } catch (_) {
+      sendJson(res, 400, { ok: false, code: "INVALID_JSON" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
+}
+
+function readRuneAutomationRequest(req, res) {
+  let body = "";
+  let rejected = false;
+  req.on("data", chunk => {
+    if (rejected) return;
+    body += chunk;
+    if (Buffer.byteLength(body, "utf8") > 16 * 1024) {
+      rejected = true;
+      sendJson(res, 413, { ok: false, code: "REQUEST_TOO_LARGE" });
+    }
+  });
+  req.on("end", () => {
+    if (rejected) return;
+    try {
+      const payload = JSON.parse(body || "{}");
+      const amount = Number(payload.amount);
+      if (!Number.isSafeInteger(amount) || amount < 1 || amount > (runeCatalog?.maxRunes || 0)) {
+        sendJson(res, 400, { ok: false, code: "INVALID_RUNE_AMOUNT" });
+        return;
+      }
+
+      const helperStatus = mapHelperStatus();
+      if (!helperStatus.connected) {
+        sendJson(res, 503, { ok: false, code: helperStatus.code, detail: helperStatus.detail });
+        return;
+      }
+      if (!helperStatus.features.runes.ready) {
+        sendJson(res, 503, { ok: false, code: helperStatus.features.runes.code, detail: runeCatalogError });
+        return;
+      }
+      if ([...cheatCommands.values()].some(command => command.state === "running")) {
+        sendJson(res, 409, { ok: false, code: "COMMAND_BUSY" });
+        return;
+      }
+
+      cleanupCheatCommands();
+      const command = {
+        id: crypto.randomUUID(),
+        state: "created",
+        actions: ["addRunes"],
+        amount,
+        backupRequested: payload.backup === true,
+        createdAt: Date.now()
+      };
+      cheatCommands.set(command.id, command);
+      runDirectCommand(command, manifestPath => writeRuneManifest(runeCatalog, amount, manifestPath));
+      sendJson(res, 202, { ok: true, command: serializeCheatCommand(command) });
+    } catch (_) {
+      sendJson(res, 400, { ok: false, code: "INVALID_JSON" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
+}
+
+function sendItemLookup(url, res) {
+  if (itemCatalogError || !itemCatalog) {
+    sendJson(res, 503, { ok: false, code: "CT_ITEM_CATALOG_INVALID", detail: itemCatalogError });
+    return;
+  }
+  const query = String(url.searchParams.get("q") || "").trim().slice(0, 80);
+  const results = searchItems(itemCatalog, query, 25).map(item => ({
+    key: item.key,
+    category: item.category,
+    baseId: item.baseId,
+    name: item.name
+  }));
+  sendJson(res, 200, { ok: true, query, results });
+}
+
+function readItemAutomationRequest(req, res) {
+  let body = "";
+  let rejected = false;
+  req.on("data", chunk => {
+    if (rejected) return;
+    body += chunk;
+    if (Buffer.byteLength(body, "utf8") > 16 * 1024) {
+      rejected = true;
+      sendJson(res, 413, { ok: false, code: "REQUEST_TOO_LARGE" });
+    }
+  });
+  req.on("end", () => {
+    if (rejected) return;
+    try {
+      const payload = JSON.parse(body || "{}");
+      if (itemCatalogError || !itemCatalog) {
+        sendJson(res, 503, { ok: false, code: "CT_ITEM_CATALOG_INVALID", detail: itemCatalogError });
+        return;
+      }
+      const itemKey = typeof payload.itemKey === "string" ? payload.itemKey : "";
+      const item = itemCatalog.byKey.get(itemKey);
+      const quantity = Number(payload.quantity);
+      if (!item) {
+        sendJson(res, 400, { ok: false, code: "UNKNOWN_ITEM" });
+        return;
+      }
+      if (!Number.isSafeInteger(quantity) || quantity < 1 || quantity > (itemCatalog?.maxQuantity || 0)) {
+        sendJson(res, 400, { ok: false, code: "INVALID_ITEM_QUANTITY" });
+        return;
+      }
+
+      const helperStatus = mapHelperStatus();
+      if (!helperStatus.connected) {
+        sendJson(res, 503, { ok: false, code: helperStatus.code, detail: helperStatus.detail });
+        return;
+      }
+      if (!helperStatus.features.items.ready) {
+        sendJson(res, 503, { ok: false, code: helperStatus.features.items.code, detail: itemCatalogError });
+        return;
+      }
+      if ([...cheatCommands.values()].some(command => command.state === "running")) {
+        sendJson(res, 409, { ok: false, code: "COMMAND_BUSY" });
+        return;
+      }
+
+      cleanupCheatCommands();
+      const command = {
+        id: crypto.randomUUID(),
+        state: "created",
+        actions: ["addItem"],
+        item,
+        quantity,
+        backupRequested: payload.backup === true,
+        createdAt: Date.now()
+      };
+      cheatCommands.set(command.id, command);
+      runDirectCommand(command, manifestPath => writeItemManifest(itemCatalog, item, quantity, manifestPath));
+      sendJson(res, 202, { ok: true, command: serializeCheatCommand(command) });
+    } catch (_) {
+      sendJson(res, 400, { ok: false, code: "INVALID_JSON" });
+    }
+  });
+  req.on("error", () => {
+    if (!res.headersSent) sendJson(res, 400, { ok: false, code: "REQUEST_ERROR" });
+  });
 }
 
 function saveUploadedSaveFile(req, res) {
@@ -601,6 +1824,83 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (url.pathname === "/api/hotkeys" && req.method === "GET") {
+    sendJson(res, 200, hotkeyPayload());
+    return;
+  }
+
+  if (url.pathname === "/api/hotkeys/config" && req.method === "POST") {
+    readHotkeyConfigRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/hotkeys/service" && req.method === "POST") {
+    readHotkeyServiceRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/bridge" && req.method === "GET") {
+    sendJson(res, 200, mapHelperStatus());
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/run" && req.method === "POST") {
+    readCheatAutomationRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/runes" && req.method === "POST") {
+    readRuneAutomationRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/items" && req.method === "GET") {
+    sendItemLookup(url, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/items" && req.method === "POST") {
+    readItemAutomationRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/bosses" && req.method === "GET") {
+    sendBossInspection(res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/bosses" && req.method === "POST") {
+    readBossAutomationRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/character-stats" && req.method === "GET") {
+    sendCharacterStatsInspection(res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/character-stats" && req.method === "POST") {
+    readCharacterStatsAutomationRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/invincibility" && req.method === "GET") {
+    sendInvincibilityInspection(res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/invincibility" && req.method === "POST") {
+    readInvincibilityAutomationRequest(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/cheat-automations/status" && req.method === "GET") {
+    const command = cheatCommands.get(url.searchParams.get("id") || "");
+    if (!command) sendJson(res, 404, { ok: false, code: "COMMAND_NOT_FOUND" });
+    else sendJson(res, 200, { ok: true, command: serializeCheatCommand(command) });
+    return;
+  }
+
   if (url.pathname === "/api/action" && req.method === "POST") {
     let body = "";
     req.on("data", chunk => body += chunk);
@@ -620,6 +1920,8 @@ const server = http.createServer((req, res) => {
 
   let pathname = decodeURIComponent(url.pathname);
   if (pathname === "/") pathname = "/control.html";
+  if (pathname === "/automation" || pathname === "/automation/") pathname = "/automation.html";
+  if (pathname === "/hotkeys" || pathname === "/hotkeys/") pathname = "/hotkeys.html";
   const file = path.normalize(path.join(ROOT, pathname));
   if (!file.startsWith(ROOT)) {
     res.writeHead(403); res.end("Forbidden"); return;
@@ -671,9 +1973,22 @@ setInterval(() => {
 
 startSaveWatcher(() => broadcastState());
 
-server.listen(PORT, () => {
+server.listen(PORT, "127.0.0.1", () => {
   console.log(`Elden Ring Challenge Overlay`);
   console.log(`Control: http://localhost:${PORT}/control.html`);
   console.log(`Overlay: http://localhost:${PORT}/overlay.html`);
   console.log(`Save: ${getSaveStatus().path || "not configured"}`);
+  if (hotkeyConfig.serviceEnabled) setTimeout(startHotkeyService, 100);
+});
+
+process.once("exit", () => {
+  clearHotkeyLeaseTimer();
+  if (hotkeyRuntimePaths?.lease) {
+    try { fs.unlinkSync(hotkeyRuntimePaths.lease); }
+    catch (_) {}
+  }
+  if (hotkeyProcess) {
+    try { hotkeyProcess.kill(); }
+    catch (_) {}
+  }
 });

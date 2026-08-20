@@ -28,6 +28,8 @@
         <input id="challengeTitleInput" type="text" maxlength="80" placeholder="Challenge name" data-i18n-placeholder="challengeTitlePlaceholder">
       </div>
 
+      <div id="characterSlotField" class="field-group"></div>
+
       <div class="field-group">
         <span class="field-label" data-i18n="saveFile">Save File</span>
         <div class="save-file-row">
@@ -35,6 +37,18 @@
           <input id="saveFileInput" type="file" accept=".sl2,.co2" hidden>
         </div>
         <div id="saveFileUploadStatus" class="field-hint"></div>
+      </div>
+
+      <div class="field-group">
+        <span id="cheatAutomationLabel" class="field-label">Oyun yardımcısı</span>
+        <a id="openCheatAutomationButton" class="button-link primary" href="/automation">Otomasyonları Aç</a>
+        <div id="cheatAutomationHint" class="field-hint">İzinli harita, Lütuf Noktası, rune ve eşya komutlarını çalışan oyuna doğrudan uygula; Cheat Engine gerekmez.</div>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label" data-i18n="hotkeyProgram">Hotkey Programı</span>
+        <a class="button-link primary" href="/hotkeys" data-i18n="openHotkeyProgram">Hotkey Programını Aç</a>
+        <div class="field-hint" data-i18n="hotkeyProgramHint">Tetikleyici, basma, basılı tutma, bırakma ve bekleme adımlarından kendi makrolarını oluştur.</div>
       </div>
 
       <div class="switch-group">
@@ -62,16 +76,6 @@
       </div>
 
       <div id="customBossControls" class="custom-boss-controls"></div>
-
-      <div class="button-row">
-        <button class="primary" onclick="send({type:'start'})">Start</button>
-        <button onclick="send({type:'pause'})">Pause</button>
-        <button onclick="send({type:'resetTimer'})">Reset Timer</button>
-        <button class="primary" onclick="send({type:'nextSplit'})">Next Split</button>
-        <button onclick="send({type:'incTotalPB'})">PB +</button>
-        <button onclick="send({type:'decTotalPB'})">PB -</button>
-        <button class="danger" onclick="send({type:'resetRun'})">Reset Run</button>
-      </div>
 
       <h2 data-i18n="preview">Preview</h2>
       <iframe src="overlay.html" class="preview-frame"></iframe>

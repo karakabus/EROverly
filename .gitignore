@@ -9,3 +9,4 @@ save_file_path.js
 # Local installers / third-party tooling
 *.dmg
 eldenring_all-in-one_*.ct
+tools/elden-ring-map-helper/bin/

@@ -72,6 +72,12 @@ function readConfiguredSavePath() {
   if (process.env.ER_SAVE_PATH) return resolveSavePath(process.env.ER_SAVE_PATH);
   const runtimeSavePath = readRuntimeSavePath();
   if (runtimeSavePath) return resolveSavePath(runtimeSavePath);
+  return readLiveSavePath();
+}
+
+function readLiveSavePath() {
+  if (process.env.ER_LIVE_SAVE_PATH) return resolveSavePath(process.env.ER_LIVE_SAVE_PATH);
+  if (process.env.ER_SAVE_PATH) return resolveSavePath(process.env.ER_SAVE_PATH);
   if (!fs.existsSync(CONFIG_PATH)) return null;
 
   const source = fs.readFileSync(CONFIG_PATH, "utf8");
@@ -648,5 +654,6 @@ module.exports = {
   getSaveStatus,
   parseCharacters,
   readConfiguredSavePath,
+  readLiveSavePath,
   startSaveWatcher
 };

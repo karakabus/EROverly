@@ -4,6 +4,7 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
+    "build:map-helper": "./tools/elden-ring-map-helper/build.sh",
     "start": "node server.js"
   }
 }
